@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Strite Inventory Management.exe" size="1229288">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Strite Inventory Management.exe" size="1228264">
       <assemblyIdentity name="Strite Inventory Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>g1ROIE7MErF4yxE9F3cLvkL8/LaVbJKF44YTFtqnob8=</dsig:DigestValue>
+        <dsig:DigestValue>+T2oBI6N8QsUGrPru0Y+Mfasn0/ppPBb5g0ucO6nvOI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,13 +63,13 @@
       <dsig:DigestValue>DYAirszLvuTDPMaHPg69Zmdve7aRluKpCwwu2Xj7HcQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Strite Inventory Management.exe.config" size="3922">
+  <file name="Strite Inventory Management.exe.config" size="3678">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>HeDxZ/w+VN0Iy5x562n3AWI1t2x7FrbKZkfN1Fr7KKE=</dsig:DigestValue>
+      <dsig:DigestValue>kol1+dzgV09CUHsVwzLxcNo5F+IpG0ZTDz+i4FqqMQc=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

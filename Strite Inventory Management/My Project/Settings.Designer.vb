@@ -304,6 +304,30 @@ Namespace My
                 Me("Tthreefourths") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property SignedOutVal() As Decimal
+            Get
+                Return CType(Me("SignedOutVal"),Decimal)
+            End Get
+            Set
+                Me("SignedOutVal") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property InventoryVal() As Decimal
+            Get
+                Return CType(Me("InventoryVal"),Decimal)
+            End Get
+            Set
+                Me("InventoryVal") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

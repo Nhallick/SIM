@@ -26,6 +26,8 @@
 'UPDATES
 '1.1.1
 '  -Bug Fix: fixed bug where dates were showing up as mm/dd/yyyy instead of dd/mm/yyyy
+'1.2.0
+'  -Integrate project with GitHub version control
 '-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Imports System.ComponentModel
 Public Class StriteInventoryManagement
