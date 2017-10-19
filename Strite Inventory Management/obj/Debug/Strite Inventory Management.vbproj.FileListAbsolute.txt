@@ -1,0 +1,21 @@
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.exe.config
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.exe.manifest
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.application
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.exe
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.pdb
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\bin\Debug\Strite Inventory Management.xml
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.vbprojResolveAssemblyReference.cache
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.DevOptions.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.Monitoring.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.Resources.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.StriteInventoryManagement.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.ToolCutter.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite_Inventory_Management.ToolRoom.resources
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.vbproj.GenerateResource.Cache
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.vbproj.CoreCompileInputs.cache
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.TrustInfo.xml
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.exe.manifest
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.application
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.exe
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.xml
+C:\Users\nhallick\Documents\Visual Studio 2017\Projects\Strite Inventory Management\Strite Inventory Management\obj\Debug\Strite Inventory Management.pdb
