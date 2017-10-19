@@ -128,7 +128,7 @@ Public Class Monitoring
                     lblbInventoryValue.BackColor = Color.Red
                     lblbInventoryValue.ForeColor = Color.Black
                     flashcount -= 1
-                ElseIf lblbInventoryValue.BackColor = Color.red Then
+                ElseIf lblbInventoryValue.BackColor = Color.Red Then
                     lblbInventoryValue.BackColor = Color.Transparent
                     lblbInventoryValue.ForeColor = Color.Red
                 End If
