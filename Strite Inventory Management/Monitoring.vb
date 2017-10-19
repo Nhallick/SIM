@@ -10,6 +10,10 @@ Public Class Monitoring
     Dim inventoryflag As Boolean
     Dim orderflag As Boolean
     Dim signedoutflag As Boolean
+    Dim flashcount As Integer
+    Dim FG As Boolean
+    Dim FR As Boolean
+    Dim alternate As Boolean
     Private Sub Monitoring_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet1.ToolRoomInventory' table. You can move, or remove it, as needed.
@@ -30,8 +34,9 @@ Public Class Monitoring
         CBSearch.Items.Add("Signed Out Cutters")
         CBSearch.Text = "All"
         tmrRefresh.Start()
-        lblbInventoryValue.Text = "Current Tool Inventory Value: $" & ToolRoomInventoryTableAdapter.ToolRoomValue.ToString
-        lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
+        lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
+        lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
+        flashcount = 0
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
@@ -84,8 +89,63 @@ Public Class Monitoring
 
         'Update is complete so set the updaterequired flag to false
         UpdateRequired = False
-        lblbInventoryValue.Text = "Current Tool Inventory Value: $" & ToolRoomInventoryTableAdapter.ToolRoomValue.ToString
-        lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
+
+        If ToolRoomInventoryTableAdapter.ToolRoomValue.ToString > My.Settings.InventoryVal Then
+            lblbInventoryValue.ForeColor = Color.Green
+            FG = True
+            FR = False
+            flashcount = 3
+        ElseIf ToolRoomInventoryTableAdapter.ToolRoomValue.ToString < My.Settings.InventoryVal Then
+            lblbInventoryValue.ForeColor = Color.Red
+            FR = True
+            FG = False
+            flashcount = 3
+        Else
+            'FG = False
+            'FR = False
+            'lblbInventoryValue.ForeColor = Color.Black
+            'lblbInventoryValue.BackColor = Color.Transparent
+            'flashcount = 0
+        End If
+
+        My.Settings.InventoryVal = ToolRoomInventoryTableAdapter.ToolRoomValue.ToString
+        lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
+        My.Settings.SignedOutVal = SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
+        lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
+
+        If flashcount > 0 Then
+            If FG = True Then
+                If lblbInventoryValue.BackColor = Color.Transparent Then
+                    lblbInventoryValue.BackColor = Color.Green
+                    lblbInventoryValue.ForeColor = Color.Black
+                    flashcount -= 1
+                ElseIf lblbInventoryValue.BackColor = Color.Green Then
+                    lblbInventoryValue.BackColor = Color.Transparent
+                    lblbInventoryValue.ForeColor = Color.Green
+                End If
+            ElseIf FR = True Then
+                If lblbInventoryValue.BackColor = Color.Transparent Then
+                    lblbInventoryValue.BackColor = Color.Red
+                    lblbInventoryValue.ForeColor = Color.Black
+                    flashcount -= 1
+                ElseIf lblbInventoryValue.BackColor = Color.red Then
+                    lblbInventoryValue.BackColor = Color.Transparent
+                    lblbInventoryValue.ForeColor = Color.Red
+                End If
+            End If
+        Else
+            If FG = True Then
+                lblbInventoryValue.ForeColor = Color.Green
+            ElseIf FR = True Then
+                lblbInventoryValue.ForeColor = Color.Red
+            End If
+            FG = False
+            FR = False
+            'lblbInventoryValue.ForeColor = Color.Black
+            lblbInventoryValue.BackColor = Color.Transparent
+            flashcount = 0
+        End If
+
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
