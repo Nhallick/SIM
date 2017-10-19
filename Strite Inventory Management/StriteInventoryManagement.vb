@@ -7,7 +7,7 @@
 '            519-658-9361 ext.344
 'Project Start Date: 14/06/2017
 'Project End Date: TBD
-'Revision: 0.0.1 (Alpha)
+'Revision: 1.1.1 (Published)
 
 '***********************************************************************************************************************************************************************
 'The Dreaded TODO Section
@@ -23,6 +23,9 @@
 'TODO: FUll functionality of search button in toolroom interface *COMPLETED: 21/06/2017*
 
 '***********************************************************************************************************************************************************************
+'UPDATES
+'1.1.1
+'  -Bug Fix: fixed bug where dates were showing up as mm/dd/yyyy instead of dd/mm/yyyy
 '-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Imports System.ComponentModel
 Public Class StriteInventoryManagement
@@ -72,7 +75,7 @@ Public Class StriteInventoryManagement
 
     Private Sub TMRRefresh_Tick(sender As Object, e As EventArgs) Handles TMRRefresh.Tick
         Dim i As Integer
-        'refresh the user datagridview using the timer interval (1 second is probably the best interval, could be longer if neccessary)
+        'refresh the user datagridview using the timer interval (1 second is probably the best interval, could be longer if neccessary) (Is currently 1.1 seconds as of 08/08/2017)
         DGVRefresh("Users", DGVUsers)
 
         'Use a for loop to go through each item in the datagridview. If a user is online change the status cell green, if they are offline change the cell to red.
@@ -94,7 +97,7 @@ Public Class StriteInventoryManagement
     End Sub
 
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        'if a user clicks on the strite logo and they are approved (see below for usernames approved) bring up the monitoring interface.
+        'if a user clicks on the strite logo and they are approved (see below for usernames) bring up the monitoring interface.
         Select Case Environment.UserName
             Case "nhallick"
                 Monitoring.Show()

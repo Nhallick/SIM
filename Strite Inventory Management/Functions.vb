@@ -3,124 +3,124 @@
 '------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Imports System.Data.OleDb
 Public Module Functions
-    Dim con As New OleDbConnection
-    Dim ds As New DataSet
-    Dim dt As New DataTable
-    Dim dt2 As DataTable
-    Dim da As New OleDbDataAdapter
+    Dim dbconn As New OleDbConnection
+    Dim Dset As New DataSet
+    Dim Dtable As New DataTable
+    Dim Dtable2 As DataTable
+    Dim Dadapter As New OleDbDataAdapter
 
     Public Sub DGVRefresh(ByVal table As String, ByRef dgv As DataGridView)
 
         'This sub connects to the database and updates a datagridview with ALL records from a specific table specified through code
         'close connection from any previous session
-        con.Close()
+        dbconn.Close()
 
         'clear dataset so as not to append data
-        ds.Clear()
+        Dset.Clear()
 
         'Select SQL query that selects ALL records from a table
         Dim str As String = "SELECT * FROM " & "[" & table & "]" & ""
-        con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
 
         'use try catch statement to open the connection
         Try
-            con.Open()
+            dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'use try catch statement to add a table (dt) to the dataset (ds) in order to store values
         Try
-            ds.Tables.Add(dt)
+            Dset.Tables.Add(Dtable)
         Catch ex As Exception
-
+            ' MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'create new dataadapter object using the sql string from above and the connection created above
-        da = New OleDbDataAdapter(str, con)
+        Dadapter = New OleDbDataAdapter(str, dbconn)
 
         'create new command builder in order to excecute the SELECT SQL statement using the dataadapter created (da)
         'specify prefix and suffix for cb
-        Dim cb = New OleDbCommandBuilder(da) With {
+        Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
             .QuoteSuffix = "]"
         }
         'use try catch statement to fill the datatable (dt) using the dataadapter (da)
         Try
-            da.Fill(dt)
+            Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'set the datasource of the datagridview to the datatable
-        dgv.DataSource = dt.DefaultView
+        dgv.DataSource = Dtable.DefaultView
 
         'close the connection to the database
-        con.Close()
+        dbconn.Close()
     End Sub
 
     Public Sub DGVUserStatusandInterface(ByVal status As String, ByVal userinterface As String)
 
         'this sub updates the users status and interface according to variables given through code when calling the sub
-        con.Close()
+        dbconn.Close()
         Dim str As String = "UPDATE [Users] set [Status] = '" & status & "', [Interface] = '" & userinterface & "' WHERE [Username] = '" & Environment.UserName & "'"
-        con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
         Try
-            con.Open()
+            dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
         Try
-            ds.Tables.Add(dt)
+            Dset.Tables.Add(Dtable)
         Catch ex As Exception
-
+            'MsgBox(Convert.ToString(ex), vbCritical)
         End Try
-        da = New OleDbDataAdapter(str, con)
-        Dim cb = New OleDbCommandBuilder(da) With {
+        Dadapter = New OleDbDataAdapter(str, dbconn)
+        Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
             .QuoteSuffix = "]"
         }
-        da.Fill(dt)
-        con.Close()
+        Dadapter.Fill(Dtable)
+        dbconn.Close()
     End Sub
 
     Public Sub UserValidation()
 
         'this sub validates the current user to the database. if the user is not on the database then the program will close immediately. If they are on the database or "Registered" then they are allowed to use the program.
-        con.Close()
-        ds.Clear()
+        dbconn.Close()
+        Dset.Clear()
 
         'SQL statement used to compare the computers domain name (Environment.Username) with the username field in the database
-        Dim str As String = "SELECT * FROM [Users] WHERE [Username]= '" & Environment.UserName & "'"
-        con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        Dim str As String = $"SELECT * FROM [Users] WHERE [Username]= '{Environment.UserName}'"
+        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
         Try
-            con.Open()
+            dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
         Try
-            ds.Tables.Add(dt)
+            Dset.Tables.Add(Dtable)
         Catch ex As Exception
-
+            '  MsgBox(Convert.ToString(ex), vbCritical)
         End Try
-        da = New OleDbDataAdapter(str, con)
-        Dim cb = New OleDbCommandBuilder(da) With {
+        Dadapter = New OleDbDataAdapter(str, dbconn)
+        Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
             .QuoteSuffix = "]"
         }
 
         Try
-            da.Fill(dt)
+            Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'Count the number of results in the datatable. There should be only 1 result as each computer has a different name. If there is a result the user is registered.
-        If dt.Rows.Count = 0 Then
-            MsgBox("User not Registered", MsgBoxStyle.Critical, "Error")
+        If Dtable.Rows.Count = 0 Then
+            MsgBox("User '" & Environment.UserName & "' is not registered. Speak to the administrator of the software to register your username. The program will now terminate.", MsgBoxStyle.Critical, "Error")
             StriteInventoryManagement.Close()
         End If
-        con.Close()
+        dbconn.Close()
     End Sub
 
     Public Sub ToolCutterSubmit(ByRef dgv As DataGridView)
@@ -135,39 +135,39 @@ Public Module Functions
 
             'declare relevant variables
             Dim i As Integer = dgv.CurrentRow.Index
-            Dim col As String = dgv(0, i).Value
-            Dim col2 As String = dgv(1, i).Value
-            Dim col3 As String = dgv(2, i).Value
-            Dim result As String = MsgBox("Are you sure you would like to submit this order for (" & col & ") pcs. of (" & col2 & ")?", vbYesNo + vbInformation, "Submit this order?")
+            Dim QtyToMake As String = dgv(0, i).Value
+            Dim ToolName As String = dgv(1, i).Value
+            Dim DateSubmitted As String = dgv(2, i).Value
+            Dim datemade As String
+            Dim result As String = MsgBox("Are you sure you would like to submit this order for (" & QtyToMake & ") pcs. of (" & ToolName & ")?", vbYesNo + vbInformation, "Submit this order?")
             If result = vbYes Then
-                con.Close()
-
+                dbconn.Close()
+                datemade = Date.Now.ToString("dd/MM/yyyy hh:mm:ss tt")
                 'Update the approval field in the database to "submitted for Approval" indicating to the program to move the order to the tool room interface
-                Dim Str As String = "UPDATE [CutterOrders] set [Approval] = ""Submitted for Approval"", [Date Made] = #" & Date.Now & "# WHERE ([QtyToMake] = " & col & ") AND ([Tool Name] = '" & col2 & "') AND ([Date Submitted] = '" & col3 & "') AND ([Approval] = ""Awaiting Submittal"")"
+                Dim Str As String = "UPDATE [CutterOrders] set [Approval] = ""Submitted for Approval"", [Date Made] = '" & datemade & "' WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "') AND ([Approval] = ""Awaiting Submittal"")"
 
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-
+                    'MsgBox(Convert.ToString(ex),vbcritical)
                 End Try
-                da = New OleDbDataAdapter(Str, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(Str, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
                 Try
-                    da.Fill(dt)
+                    Dadapter.Fill(Dtable)
                 Catch ex As Exception
-
+                    ' MsgBox(Convert.ToString(ex),vbcritical)
                 End Try
-
-                con.Close()
+                dbconn.Close()
             Else
                 Exit Sub
             End If
@@ -189,10 +189,58 @@ Public Module Functions
                 Dim Countresult As Integer
                 Dim loopflag As Boolean = False
                 Dim rejectresult As String = vbNo
+                Dim TCost As Decimal
 
 
+                Dim toolsplit() As String = Split(ToolName, " ")
+                Dim size As String = toolsplit(0)
 
-                con.Close()
+                Select Case size
+                    Case "1/8"
+                        TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                    Case "3/16"
+                        TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                    Case "15/64"
+                        TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                    Case "1/4"
+                        TCost = My.Settings.onefourth + My.Settings.Tonefourth
+                    Case "5/16"
+                        TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                    Case "3/8"
+                        TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                    Case "7/16"
+                        TCost = My.Settings.sevensixteenths + My.Settings.Tsevensixteenths
+                    Case "1/2"
+                        TCost = My.Settings.onehalf + My.Settings.Tonehalf
+                    Case "5/8"
+                        TCost = My.Settings.fiveeighths + My.Settings.Tfiveeighths
+                    Case "3/4"
+                        TCost = My.Settings.threefourths + My.Settings.Tthreefourths
+                    Case "11/64"
+                        TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                    Case "3/32"
+                        TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                    Case "9/64"
+                        TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                    Case "5/64"
+                        TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                    Case "11/32"
+                        TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                    Case "5/32"
+                        TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                    Case "13/64"
+                        TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                    Case "7/64"
+                        TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                    Case "7/32"
+                        TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                    Case "9/32"
+                        TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                    Case "test"
+                        TCost = 123.45
+                End Select
+
+                dbconn.Close()
 
                 'update approval to either "Accepted" or "Rejected" depending on the button press
                 Dim Str As String = "UPDATE [CutterOrders] set [Approval] = '" & condition & "' WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "')"
@@ -201,79 +249,79 @@ Public Module Functions
                 Dim Str4 As String = "UPDATE [CutterOrders] set [Approval] = ""Submitted For Approval"" WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "')"
 
                 'updates quantity in the inventory based on the quantity made in the order
-                Dim Str2 As String = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] + '" & QtyToMake & "', [Order Placed]= ""N"", [Date Updated]= #" & Date.Now & "# WHERE [Tool] = '" & ToolName & "'"
+                Dim Str2 As String = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] + '" & QtyToMake & "', [Order Placed]= ""N"", [Date Updated]= '" & Date.Now & "', [Cost] = [Cost] + '" & (TCost * QtyToMake) & "' WHERE [Tool] = '" & ToolName & "'"
 
                 'used to count the number of tools in inventory with a certain name. Used primarily to check if a tool exists in the inventory already or not
                 Dim count As String = "SELECT Count(*) AS Expr1, Tool FROM [ToolRoomInventory] GROUP BY Tool HAVING (Tool = '" & ToolName & "')"
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
 
                 'changes approval condition to accepted or rejected-----------------------------------------------------------------------------------------------------
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
                     ' MsgBox(Convert.ToString(ex))
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
                     'MsgBox(Convert.ToString(ex))
                 End Try
-                da = New OleDbDataAdapter(Str, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(Str, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
-                da.Fill(dt)
+                Dadapter.Fill(Dtable)
                 'MsgBox(Str)
-                con.Close()
+                dbconn.Close()
                 '-------------------------------------------------------------------------------------------------------------------------------------------------------
 
-                'if the condition was changed to "rejected" then ask the user if they are sure about rejecting. If "yes" then reject the order, if "no" then restore order to "submitted for Approval" condition 
+                'if the condition was changed to "rejected" then ask the user if they are sure about rejecting. If "yes" then reject the order, if "no" then restore order to "Submitted for Approval" condition
                 If condition = "Rejected" Then
                     Dim Str5 As String = "UPDATE [ToolRoomInventory] set [Order Placed]= ""N"" WHERE [Tool] = '" & ToolName & "'"
                     rejectresult = MsgBox("Are you sure you would like to reject this order: (" & QtyToMake & ") of (" & ToolName & ")? This decision cannot be undone.", vbYesNo + vbInformation, "Reject Order?")
                     Dim comment As String
-                    con.Open()
+                    dbconn.Open()
 
                     If rejectresult = vbYes Then
-                        da = New OleDbDataAdapter(Str5, con)
-                        cb = New OleDbCommandBuilder(da)
-                        da.Fill(dt)
+                        Dadapter = New OleDbDataAdapter(Str5, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
                         Do
                             comment = InputBox("Please describe why this order is being rejected", "Reject")
                         Loop Until comment <> ""
-                        Dim Str6 As String = "UPDATE [CutterOrders] set [Approval] = [Approval] + '" & " (" & comment & ") " & "' WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "')"
-                        da = New OleDbDataAdapter(Str6, con)
-                        cb = New OleDbCommandBuilder(da)
-                        da.Fill(dt)
+                        Dim Str6 As String = "UPDATE [CutterOrders] set [Approval] = [Approval] + '" & " (" & comment & ") " & "' + '" & " (" & (TCost * QtyToMake) & ") " & "' WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "')"
+                        Dadapter = New OleDbDataAdapter(Str6, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
                         Exit Sub
                     End If
                     If rejectresult = vbNo Then
-                        da = New OleDbDataAdapter(Str4, con)
-                        cb = New OleDbCommandBuilder(da)
-                        da.Fill(dt)
+                        Dadapter = New OleDbDataAdapter(Str4, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
                         Exit Sub
                     End If
                 End If
-                con.Close()
+                dbconn.Close()
                 'handles adding tool to inventory or updating the quantity if it already exists-------------------------------------------------------------------------
                 'Count number of records matching 'ToolName' (should only be 1)
-                Dim cb2 As New OleDbCommand(count, con)
-                con.Open()
+                Dim cb2 As New OleDbCommand(count, dbconn)
+                dbconn.Open()
                 'use excecute scalar command when using a COUNT command
                 Countresult = cb2.ExecuteScalar
-                con.Close()
+                dbconn.Close()
                 'use count result to determine which str operation to invoke (0 means the tool does not exist in the inventory)
                 If Countresult = 0 Then
 
-                    'prompt user to confirm adding hte tool to the database
-                    Dim result As String = MsgBox("'" & ToolName & "' does not exist in database, add this tool?", vbYesNo + vbInformation, "Add Tool?")
-                    con.Open()
+                    'prompt user to confirm adding the tool to the database
+                    Dim result As String = MsgBox("'" & ToolName & "' does not exist in the database, add this tool?", vbYesNo + vbInformation, "Add Tool?")
+                    dbconn.Open()
                     'If "no" then revert approval to "submitted for approval" (in cases of a mistake I guess)
                     If result = vbNo Then
-                        da = New OleDbDataAdapter(Str4, con)
-                        cb = New OleDbCommandBuilder(da)
-                        da.Fill(dt)
+                        Dadapter = New OleDbDataAdapter(Str4, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
                         Exit Sub
 
                         'If "Yes" then prompt user for max and min bin size then add to inventory database
@@ -299,30 +347,30 @@ Public Module Functions
                         Loop Until loopflag = True
 
                         'used to insert (add) a new cutter to the inventory. user is prompted to add min and max bin sizes
-                        Dim Str3 As String = "INSERT INTO [ToolRoomInventory] ([Quantity], [Tool], [Max Bin Size], [Min Bin Size], [Order Placed], [Date Updated]) VALUES (" & QtyToMake & ", '" & ToolName & "', " & MaxBin & ", " & MinBin & ", ""N"", #" & Date.Now & "#)"
-                        da = New OleDbDataAdapter(Str3, con)
-                        cb = New OleDbCommandBuilder(da)
-                        da.Fill(dt)
+                        Dim Str3 As String = "INSERT INTO [ToolRoomInventory] ([Quantity], [Tool], [Max Bin Size], [Min Bin Size], [Order Placed], [Date Updated], [Cost]) VALUES (" & QtyToMake & ", '" & ToolName & "', " & MaxBin & ", " & MinBin & ", ""N"", '" & Date.Now & "', '" & (TCost * QtyToMake) & "' )"
+                        Dadapter = New OleDbDataAdapter(Str3, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
                     End If
                 Else
 
                     'if the tool is already in the inventory just add the made quantity to the inventory quantity
-                    da = New OleDbDataAdapter(Str2, con)
-                    cb = New OleDbCommandBuilder(da)
-                    da.Fill(dt)
+                    Dadapter = New OleDbDataAdapter(Str2, dbconn)
+                    cb = New OleDbCommandBuilder(Dadapter)
+                    Dadapter.Fill(Dtable)
                 End If
                 '-------------------------------------------------------------------------------------------------------------------------------------------------------
-                con.Close()
+                dbconn.Close()
             End If
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
     End Sub
 
     Public Sub NewTool()
-        con.Close()
-        ds.Clear()
+        dbconn.Close()
+        Dset.Clear()
         Dim QtyToMake As String
         Dim ToolName As String
         Dim DateSubmitted As String
@@ -350,59 +398,59 @@ Public Module Functions
             Dim str As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToMake & ", '" & ToolName & "', '" & DateSubmitted & "', '" & Approval & "')"
             Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & ToolName & "') AND (Approval = ""Awaiting Submittal"")"
 
-            Dim cb2 As New OleDbCommand(count, con)
-            con.Open()
+            Dim cb2 As New OleDbCommand(count, dbconn)
+            dbconn.Open()
             'use excecute scalar command when using a COUNT command
             countresult = cb2.ExecuteScalar
-            con.Close()
+            dbconn.Close()
 
             If countresult = 0 Then
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
 
                 End Try
-                da = New OleDbDataAdapter(str, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(str, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
 
                 Try
-                    da.Fill(dt)
+                    Dadapter.Fill(Dtable)
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
-                con.Close()
+                dbconn.Close()
             Else
                 Dim updatestr As String = "UPDATE [CutterOrders] set [QtyToMake] = [QtyToMake] + '" & QtyToMake & "' WHERE ([Tool Name] = '" & ToolName & "')"
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
 
                 End Try
-                da = New OleDbDataAdapter(updatestr, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(updatestr, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
                 Try
-                    da.Fill(dt)
+                    Dadapter.Fill(Dtable)
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
-                con.Close()
+                dbconn.Close()
             End If
 
         Else
@@ -428,16 +476,65 @@ Public Module Functions
             Dim personname As String
             Dim DateSignedOut As String = Date.Now
             Dim ToolName As String = dgv.SelectedRows(0).Cells(1).Value.ToString
-            Dim DateSubmitted As Date = Date.Now
+            Dim DateSubmitted As String = Date.Now
             Dim Approval As String = "Awaiting Submittal"
+            Dim TCost As Decimal
 
+
+            Dim toolsplit() As String = Split(ToolName, " ")
+            Dim size As String = toolsplit(0)
+
+            Select Case size
+                Case "1/8"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "3/16"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "15/64"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "1/4"
+                    TCost = My.Settings.onefourth + My.Settings.Tonefourth
+                Case "5/16"
+                    TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "3/8"
+                    TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "7/16"
+                    TCost = My.Settings.sevensixteenths + My.Settings.Tsevensixteenths
+                Case "1/2"
+                    TCost = My.Settings.onehalf + My.Settings.Tonehalf
+                Case "5/8"
+                    TCost = My.Settings.fiveeighths + My.Settings.Tfiveeighths
+                Case "3/4"
+                    TCost = My.Settings.threefourths + My.Settings.Tthreefourths
+                Case "11/64"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "3/32"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "9/64"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "5/64"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "11/32"
+                    TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "5/32"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "13/64"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "7/64"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "7/32"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "9/32"
+                    TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "test"
+                    TCost = 123.45
+            End Select
 
             'prompt user to confirm signing out tool
             Dim result As String = MsgBox("Are you sure you would like to sign out this tool: (" & Tool & ")", vbYesNo + vbInformation, "Sign Out?")
 
             'if user selects yes then run the following code
             If result = vbYes Then
-                con.Close()
+                dbconn.Close()
 
                 'Get quantity from user
                 Do
@@ -460,51 +557,51 @@ Public Module Functions
                 Loop Until personname <> ""
 
                 'following code used to insert the sign out record to the database
-                Dim Str As String = "INSERT INTO [SignedOutCutters] ([Quantity], [Tool], [ShopOrder], [Department], [Date]) VALUES (" & QtyToSignOut & ", '" & Tool & "', '" & ShopOrder & "', '" & Department & "' + "" ("" + '" & personname & "' + "")"", #" & DateSignedOut & "#)"
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                Dim Str As String = "INSERT INTO [SignedOutCutters] ([Quantity], [Tool], [ShopOrder], [Department], [Date], [Cost]) VALUES (" & QtyToSignOut & ", '" & Tool & "', '" & ShopOrder & "', '" & Department & "' + "" ("" + '" & personname & "' + "")"", '" & DateSignedOut & "', '" & (TCost * QtyToSignOut) & "' )"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-
+                    ' MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
-                da = New OleDbDataAdapter(Str, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(Str, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
-                da.Fill(dt)
+                Dadapter.Fill(Dtable)
 
                 'update the corresponding record in the database to reflect quantity signed out
-                Dim Str2 As String = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] - '" & QtyToSignOut & "', [Date Updated]= #" & Date.Now & "# WHERE [Tool] = '" & Tool & "'"
-                da = New OleDbDataAdapter(Str2, con)
-                cb = New OleDbCommandBuilder(da)
-                da.Fill(dt)
-                con.Close()
+                Dim Str2 As String = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] - '" & QtyToSignOut & "', [Date Updated]= '" & Date.Now & "', [Cost] = [Cost] - '" & (TCost * QtyToSignOut) & "'  WHERE [Tool] = '" & Tool & "'"
+                Dadapter = New OleDbDataAdapter(Str2, dbconn)
+                cb = New OleDbCommandBuilder(Dadapter)
+                Dadapter.Fill(Dtable)
+                dbconn.Close()
                 If dgv.SelectedRows(0).Cells(4).Value.ToString() = "Y" Then
-                    Dim Str3 As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToSignOut & ", '" & ToolName & "', #" & DateSubmitted & "#, '" & Approval & "')"
-                    con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    Dim Str3 As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToSignOut & ", '" & ToolName & "', '" & DateSubmitted & "', '" & Approval & "')"
+                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                     Try
-                        con.Open()
+                        dbconn.Open()
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex))
+                        MsgBox(Convert.ToString(ex), vbCritical)
                     End Try
                     Try
-                        ds.Tables.Add(dt)
+                        Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-
+                        'MsgBox(Convert.ToString(ex), vbCritical)
                     End Try
-                    da = New OleDbDataAdapter(Str3, con)
-                    cb = New OleDbCommandBuilder(da) With {
+                    Dadapter = New OleDbDataAdapter(Str3, dbconn)
+                    cb = New OleDbCommandBuilder(Dadapter) With {
                         .QuotePrefix = "[",
                         .QuoteSuffix = "]"
                     }
-                    da.Fill(dt)
-                    con.Close()
+                    Dadapter.Fill(Dtable)
+                    dbconn.Close()
                 End If
             Else
                 Exit Sub
@@ -522,7 +619,6 @@ Public Module Functions
             Dim EditQTY As String
             Dim EditMaxBinSize As String
             Dim EditMinBinSize As String
-            Dim EditOrderPlaced As String
             Dim loopflag As Boolean = False
             Dim Quantity As String = dgv(0, i).Value
             Dim Tool As String = dgv(1, i).Value
@@ -533,7 +629,7 @@ Public Module Functions
             'ask user to confirm whether or not they would like to edit the record
             Dim result As String = MsgBox("Are you sure you would like to edit this record for (" & Quantity & ") pcs. of (" & Tool & ")?", vbYesNo + vbInformation, "Edit this order?")
             If result = vbYes Then
-                con.Close()
+                dbconn.Close()
 
                 'Ask user to input new values if they so choose. leaving the input box blank will keep the same original value as before the edit command was invoked
                 EditQTY = InputBox("Please enter new quantity. Old quantity is: (" & Quantity & ")", "New Quantity")
@@ -541,18 +637,19 @@ Public Module Functions
                 EditMinBinSize = InputBox("Please enter new minimum bin size. Old minimum bin size is: (" & MinBinSize & ")", "New Min Bin Size")
 
                 'since there are only two options for order placed the user is asked if they would like to change it to the other option or not (Toggle)
-                EditOrderPlaced = MsgBox("Change order status? Current status is: (" & OrderPlaced & ")", vbYesNo + vbQuestion, "Order Status")
+                '****functionality for changing the order placed field was removed due to the fact that the user should not have access to this****
+                'EditOrderPlaced = MsgBox("Change order status? Current status is: (" & OrderPlaced & ")", vbYesNo + vbQuestion, "Order Status")
 
                 'handles the toggling of the order placed field
-                If EditOrderPlaced = vbYes Then
-                    If OrderPlaced = "Y" Then
-                        EditOrderPlaced = "N"
-                    ElseIf OrderPlaced = "N" Then
-                        EditOrderPlaced = "Y"
-                    End If
-                ElseIf EditOrderPlaced = vbNo Then
-                    EditOrderPlaced = OrderPlaced
-                End If
+                'If EditOrderPlaced = vbYes Then
+                'If OrderPlaced = "Y" Then
+                'EditOrderPlaced = "N"
+                'ElseIf OrderPlaced = "N" Then
+                'EditOrderPlaced = "Y"
+                'End If
+                'ElseIf EditOrderPlaced = vbNo Then
+                'EditOrderPlaced = OrderPlaced
+                'End If
 
                 'loop to check if the new quantity is blank (Keep old value) or if it is not numeric (Get user to re-input value) runs until value is either blank or numeric
                 Do
@@ -563,7 +660,7 @@ Public Module Functions
                             Exit Select
                         Case Else
                             If IsNumeric(EditQTY) = False Then
-                                MsgBox("New quantity (" & EditQTY & ") must be a number", vbCritical, "Error")
+                                MsgBox("New quantity (" & EditQTY & ") must be a valid number.", vbCritical, "Error")
                                 EditQTY = InputBox("Please enter new quantity. Old quantity is: (" & Quantity & ")", "New Quantity")
                                 loopflag = False
                             ElseIf IsNumeric(EditQTY) = True Then
@@ -581,7 +678,7 @@ Public Module Functions
                             Exit Select
                         Case Else
                             If IsNumeric(EditMaxBinSize) = False Then
-                                MsgBox("New max bin size (" & EditMaxBinSize & ") must be a number", vbCritical, "Error")
+                                MsgBox("New max bin size (" & EditMaxBinSize & ") must be a valid number.", vbCritical, "Error")
                                 EditMaxBinSize = InputBox("Please enter new max bin size. Old max bin size is: (" & MaxBinSize & ")", "New Max Bin Size")
                                 loopflag = False
                             ElseIf IsNumeric(EditMaxBinSize) = True Then
@@ -599,7 +696,7 @@ Public Module Functions
                             Exit Select
                         Case Else
                             If IsNumeric(EditMinBinSize) = False Then
-                                MsgBox("New min bin size (" & EditMinBinSize & ") must be a number", vbCritical, "Error")
+                                MsgBox("New min bin size (" & EditMinBinSize & ") must be a valid number", vbCritical, "Error")
                                 EditMinBinSize = InputBox("Please enter new min bin size. Old min bin size is: (" & MinBinSize & ")", "New Min Bin Size")
                                 loopflag = False
                             ElseIf IsNumeric(EditMinBinSize) = True Then
@@ -609,25 +706,25 @@ Public Module Functions
                 Loop Until loopflag = True
 
                 'Update the Tool Room Inventory table record for the current tool and change the values that the user specified
-                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Order Placed] = '" & EditOrderPlaced & "', [Date Updated] = #" & Date.Now & "# WHERE [Tool] = '" & Tool & "'"
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "' WHERE [Tool] = '" & Tool & "'"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
-                    con.Open()
+                    dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex))
+                    MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
                 Try
-                    ds.Tables.Add(dt)
+                    Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-
+                    'MsgBox(Convert.ToString(ex), vbCritical)
                 End Try
-                da = New OleDbDataAdapter(Str, con)
-                Dim cb = New OleDbCommandBuilder(da) With {
+                Dadapter = New OleDbDataAdapter(Str, dbconn)
+                Dim cb = New OleDbCommandBuilder(Dadapter) With {
                     .QuotePrefix = "[",
                     .QuoteSuffix = "]"
                 }
-                da.Fill(dt)
-                con.Close()
+                Dadapter.Fill(Dtable)
+                dbconn.Close()
             Else
                 Exit Sub
             End If
@@ -670,39 +767,39 @@ Public Module Functions
 
     Public Sub DGVUpdate(ByRef dgv As DataGridView)
         'clear dataset to remove data from tables
-        ds.Clear()
+        Dset.Clear()
         Dim i As Integer = 0
         'declare an item to hold a value from the datatable for later use
         Dim dbitem As String
         Dim str As String = "SELECT * FROM [ToolRoomInventory]"
-        con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
 
         Try
-            con.Open()
+            dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
         Try
-            ds.Tables.Add(dt)
-            dt.Clear()
+            Dset.Tables.Add(Dtable)
+            Dtable.Clear()
         Catch ex As Exception
-
+            ' MsgBox(Convert.ToString(ex),vbcritical)
         End Try
-        da = New OleDbDataAdapter(str, con)
-        Dim cb = New OleDbCommandBuilder(da) With {
+        Dadapter = New OleDbDataAdapter(str, dbconn)
+        Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
             .QuoteSuffix = "]"
         }
 
         Try
-            da.Fill(dt)
+            Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'run through each item in the data grid view using a for loop
         For Each item In dgv.Rows
-            dbitem = dt.Rows(i).Item(10).ToString
+            dbitem = Dtable.Rows(i).Item(10).ToString
             'compare the date column of the datagridview with the date column in the database. If they dont match then update the inventory datagridview on the monitoring screen
             If (dgv(5, i).Value) <> (dbitem) Then
                 Monitoring.ToolRoomInventoryTableAdapter.Fill(Monitoring.Tool_Cutter_DatabaseDataSet.ToolRoomInventory)
@@ -710,51 +807,52 @@ Public Module Functions
             End If
             i = i + 1
         Next
-        con.Close()
+        dbconn.Close()
     End Sub
 
     Public Function Admincheck()
         Dim adminresult As String
-        con.Close()
-        ds.Clear()
+        dbconn.Close()
+        Dset.Clear()
 
         'SQL statement used to compare the computers domain name (Environment.Username) with the username field in the database
         Dim str As String = "SELECT * FROM [Users] WHERE [Username]= '" & Environment.UserName & "' AND [Admin]= ""Y"""
-        con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
         Try
-            con.Open()
+            dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
         Try
-            ds.Tables.Add(dt)
+            Dset.Tables.Add(Dtable)
         Catch ex As Exception
-
+            ' MsgBox(Convert.ToString(ex),vbcritical)
         End Try
-        da = New OleDbDataAdapter(str, con)
-        Dim cb = New OleDbCommandBuilder(da) With {
+        Dadapter = New OleDbDataAdapter(str, dbconn)
+        Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
             .QuoteSuffix = "]"
         }
 
         Try
-            da.Fill(dt)
+            Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex))
+            MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
         'Count the number of results in the datatable. There should be only 1 result as each computer has a different name. If there is a result the user is registered.
-        If dt.Rows.Count = 1 Then
+        If Dtable.Rows.Count = 1 Then
             adminresult = "Y"
         Else
             adminresult = "N"
         End If
-        con.Close()
+        dbconn.Close()
         Return adminresult
     End Function
+
     Public Sub NewInventoryItem()
-        con.Close()
-        ds.Clear()
+        dbconn.Close()
+        Dset.Clear()
         Dim Qty As String
         Dim ToolName As String
         Dim MaxBin As String
@@ -779,7 +877,7 @@ Public Module Functions
                 Loop Until IsNumeric(MaxBin) = True
                 Do
                     MinBin = InputBox("Please input minimum bin size below", "Min Bin...")
-                Loop Until IsNumeric(Minbin) = True
+                Loop Until IsNumeric(MinBin) = True
 
                 loopflag = True
                 DateUpdated = Date.Now
@@ -787,33 +885,34 @@ Public Module Functions
 
             'Following code used to insert new tool order in the database
             Dim str As String = "INSERT INTO [ToolRoomInventory] ([Quantity], [Tool], [Max Bin Size], [Min Bin Size], [Order Placed], [Date Updated]) VALUES (" & Qty & ", '" & ToolName & "', '" & MaxBin & "', '" & MinBin & "', ""N"", '" & DateUpdated & "')"
-            con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+            dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
             Try
-                con.Open()
+                dbconn.Open()
             Catch ex As Exception
-                MsgBox(Convert.ToString(ex))
+                MsgBox(Convert.ToString(ex), vbCritical)
             End Try
             Try
-                ds.Tables.Add(dt)
+                Dset.Tables.Add(Dtable)
             Catch ex As Exception
-
+                ' MsgBox(Convert.ToString(ex), vbCritical)
             End Try
-            da = New OleDbDataAdapter(str, con)
-            Dim cb = New OleDbCommandBuilder(da) With {
+            Dadapter = New OleDbDataAdapter(str, dbconn)
+            Dim cb = New OleDbCommandBuilder(Dadapter) With {
                 .QuotePrefix = "[",
                 .QuoteSuffix = "]"
             }
 
             Try
-                da.Fill(dt)
+                Dadapter.Fill(Dtable)
             Catch ex As Exception
-                MsgBox(Convert.ToString(ex))
+                MsgBox(Convert.ToString(ex), vbCritical)
             End Try
-            con.Close()
+            dbconn.Close()
         Else
             Exit Sub
         End If
     End Sub
+
     Public Sub Searchorders(ByRef dgv As DataGridView, ByRef tb As TextBox)
         Dim tool As String
         Dim toolfound As Boolean = False

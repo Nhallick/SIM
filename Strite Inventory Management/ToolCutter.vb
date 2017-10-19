@@ -59,6 +59,7 @@ Public Class ToolCutter
     Private Sub BtnSearch_Click(sender As Object, e As EventArgs) Handles BtnSearch.Click
         Searchorders(DGVOrders, tbSearch)
     End Sub
+
     Private Sub TbSearch_Click(sender As Object, e As EventArgs) Handles tbSearch.Click
         Try
             'this sub is invoked when the user activates the search textbox
@@ -81,7 +82,7 @@ Public Class ToolCutter
             'set the autocompletesource to the tools array
             tbSearch.AutoCompleteCustomSource = Tools
         Catch ex As Exception
-            ' MsgBox(ex)
+            'MsgBox(Convert.ToString(ex), vbCritical)
         End Try
 
     End Sub

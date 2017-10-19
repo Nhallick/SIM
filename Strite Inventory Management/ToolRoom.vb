@@ -5,11 +5,11 @@ Imports System.ComponentModel
 Imports System.Data.OleDb
 
 Public Class ToolRoom
-    Dim con As New OleDbConnection
-    Dim ds As New DataSet
-    Dim dt As New DataTable
-    Dim dt2 As DataTable
-    Dim da As New OleDbDataAdapter
+    Dim dbconn As New OleDbConnection
+    Dim Dset As New DataSet
+    Dim Dtable As New DataTable
+    Dim Dtable2 As DataTable
+    Dim Dadapter As New OleDbDataAdapter
     Private Sub ToolRoom_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet.CutterOrders' table. You can move, or remove it, as needed.
         CutterOrdersTableAdapter.FillSubmittedCutters(Tool_Cutter_DatabaseDataSet.CutterOrders)
@@ -58,68 +58,68 @@ Public Class ToolRoom
 
                 Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & toolname & "') AND (Approval = ""Awaiting Submittal"")"
                 Dim countresult As Integer
-                Dim cb2 As New OleDbCommand(count, con)
-                con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
-                con.Open()
+                Dim cb2 As New OleDbCommand(count, dbconn)
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.Open()
                 'use excecute scalar command when using a COUNT command
                 countresult = cb2.ExecuteScalar
-                con.Close()
+                dbconn.Close()
 
                 If countresult = 0 Then
                     'insert new order into the [cutterorders] table
-                    Dim str As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToMake & ", '" & toolname & "', #" & DateSubmitted & "#, '" & Approval & "')"
-                    con.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    Dim str As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToMake & ", '" & toolname & "', '" & DateSubmitted & "', '" & Approval & "')"
+                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                     Try
-                        con.Open()
+                        dbconn.Open()
                     Catch ex As Exception
-                        'MsgBox(Convert.ToString(ex))
+                        'MsgBox(Convert.ToString(ex),vbcritical)
                     End Try
                     Try
-                        ds.Tables.Add(dt)
+                        Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-
+                        'MsgBox(Convert.ToString(ex),vbcritical)
                     End Try
-                    da = New OleDbDataAdapter(str, con)
-                    Dim cb = New OleDbCommandBuilder(da) With {
+                    Dadapter = New OleDbDataAdapter(str, dbconn)
+                    Dim cb = New OleDbCommandBuilder(Dadapter) With {
                         .QuotePrefix = "[",
                         .QuoteSuffix = "]"
                     }
 
                     Try
-                        da.Fill(dt)
+                        Dadapter.Fill(Dtable)
                     Catch ex As Exception
-                        ' MsgBox(Convert.ToString(ex))
+                        ' MsgBox(Convert.ToString(ex),vbcritical)
                     End Try
 
                     'update inventory listing to show there is an order currently placed
                     Dim str2 As String = "UPDATE [ToolRoomInventory] set [Order Placed]= ""Y"" WHERE [Tool] = '" & toolname & "'"
-                    da = New OleDbDataAdapter(str2, con)
-                    cb = New OleDbCommandBuilder(da)
-                    da.Fill(dt)
-                    con.Close()
+                    Dadapter = New OleDbDataAdapter(str2, dbconn)
+                    cb = New OleDbCommandBuilder(Dadapter)
+                    Dadapter.Fill(Dtable)
+                    dbconn.Close()
                 ElseIf countresult = 1 Then
                     Dim update As String = "UPDATE [CutterOrders] set [QtyToMake] = [QtyToMake] + '" & QtyToMake & "' WHERE ([Tool Name] = '" & toolname & "')"
                     Try
-                        con.Open()
+                        dbconn.Open()
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex))
+                        MsgBox(Convert.ToString(ex), vbCritical)
                     End Try
                     Try
-                        ds.Tables.Add(dt)
+                        Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-
+                        'MsgBox(Convert.ToString(ex),vbcritical)
                     End Try
-                    da = New OleDbDataAdapter(update, con)
-                    Dim cb = New OleDbCommandBuilder(da) With {
+                    Dadapter = New OleDbDataAdapter(update, dbconn)
+                    Dim cb = New OleDbCommandBuilder(Dadapter) With {
                         .QuotePrefix = "[",
                         .QuoteSuffix = "]"
                     }
                     Try
-                        da.Fill(dt)
+                        Dadapter.Fill(Dtable)
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex))
+                        MsgBox(Convert.ToString(ex), vbCritical)
                     End Try
-                    con.Close()
+                    dbconn.Close()
                 End If
 
                 'refresh inventory datagridview
@@ -161,7 +161,7 @@ Public Class ToolRoom
         usercellorders = DGVSubOrders.CurrentCellAddress
 
         'When the Accept button is pushed the currently selected order is processed into the inventory according to the "ToolRoomAcceptReject" sub
-        ToolRoomAcceptReject("Accepted", DGVSubOrders)
+        ToolRoomAcceptReject("Approved", DGVSubOrders)
 
         'refresh the orders datagridview with all submitted orders
         CutterOrdersTableAdapter.FillSubmittedCutters(Tool_Cutter_DatabaseDataSet.CutterOrders)
@@ -173,7 +173,7 @@ Public Class ToolRoom
             Try
                 DGVSubOrders.CurrentCell = DGVSubOrders.Rows(usercellorders.Y).Cells(usercellorders.X)
             Catch ex As Exception
-
+                'MsgBox(Convert.ToString(ex),vbcritical)
             End Try
 
         End If
@@ -251,8 +251,32 @@ Public Class ToolRoom
     End Sub
 
     Private Sub BtnNew_Click(sender As Object, e As EventArgs) Handles btnNew.Click
+        ' if the secret "New" button is clicked then run the NewInventoryItem sub to create a new tool and refresh the dgv
         NewInventoryItem()
 
         ToolRoomInventoryTableAdapter.Fill(Tool_Cutter_DatabaseDataSet2.ToolRoomInventory)
+    End Sub
+
+    Private Sub BtnOrderSearch_Click(sender As Object, e As EventArgs) Handles BtnOrderSearch.Click
+
+        Searchorders(DGVSubOrders, TBOrderSearch)
+    End Sub
+
+    Private Sub TBOrderSearch_GotFocus(sender As Object, e As EventArgs) Handles TBOrderSearch.GotFocus
+        'this sub is used to populate the autocomplete form of the order search textbox
+        If DGVSubOrders.Rows.Count <> 0 Then
+            Dim Orders As New AutoCompleteStringCollection
+            Dim i As Integer = 0
+
+            TBOrderSearch.AutoCompleteCustomSource.Clear()
+
+            Do
+
+                Orders.Add(DGVSubOrders(1, i).Value)
+                i = i + 1
+            Loop Until i = DGVSubOrders.RowCount
+
+            TBOrderSearch.AutoCompleteCustomSource = Orders
+        End If
     End Sub
 End Class

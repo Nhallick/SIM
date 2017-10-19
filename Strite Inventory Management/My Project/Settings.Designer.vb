@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -63,6 +63,246 @@ Namespace My
             Get
                 Return CType(Me("Tool_Cutter_DatabaseConnectionString"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("6.00")>  _
+        Public Property oneeighth() As Decimal
+            Get
+                Return CType(Me("oneeighth"),Decimal)
+            End Get
+            Set
+                Me("oneeighth") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("14.30")>  _
+        Public Property threesixteenths() As Decimal
+            Get
+                Return CType(Me("threesixteenths"),Decimal)
+            End Get
+            Set
+                Me("threesixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("11.55")>  _
+        Public Property fifteensixtyfourths() As Decimal
+            Get
+                Return CType(Me("fifteensixtyfourths"),Decimal)
+            End Get
+            Set
+                Me("fifteensixtyfourths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("14.18")>  _
+        Public Property onefourth() As Decimal
+            Get
+                Return CType(Me("onefourth"),Decimal)
+            End Get
+            Set
+                Me("onefourth") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("7.05")>  _
+        Public Property fivesixteenths() As Decimal
+            Get
+                Return CType(Me("fivesixteenths"),Decimal)
+            End Get
+            Set
+                Me("fivesixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("24.01")>  _
+        Public Property threeeighths() As Decimal
+            Get
+                Return CType(Me("threeeighths"),Decimal)
+            End Get
+            Set
+                Me("threeeighths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("14.75")>  _
+        Public Property sevensixteenths() As Decimal
+            Get
+                Return CType(Me("sevensixteenths"),Decimal)
+            End Get
+            Set
+                Me("sevensixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("37.16")>  _
+        Public Property onehalf() As Decimal
+            Get
+                Return CType(Me("onehalf"),Decimal)
+            End Get
+            Set
+                Me("onehalf") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("46.36")>  _
+        Public Property fiveeighths() As Decimal
+            Get
+                Return CType(Me("fiveeighths"),Decimal)
+            End Get
+            Set
+                Me("fiveeighths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("79.35")>  _
+        Public Property threefourths() As Decimal
+            Get
+                Return CType(Me("threefourths"),Decimal)
+            End Get
+            Set
+                Me("threefourths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Toneeighth() As Decimal
+            Get
+                Return CType(Me("Toneeighth"),Decimal)
+            End Get
+            Set
+                Me("Toneeighth") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tthreesixteenths() As Decimal
+            Get
+                Return CType(Me("Tthreesixteenths"),Decimal)
+            End Get
+            Set
+                Me("Tthreesixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tfifteensixtyfourths() As Decimal
+            Get
+                Return CType(Me("Tfifteensixtyfourths"),Decimal)
+            End Get
+            Set
+                Me("Tfifteensixtyfourths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tonefourth() As Decimal
+            Get
+                Return CType(Me("Tonefourth"),Decimal)
+            End Get
+            Set
+                Me("Tonefourth") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tfivesixteenths() As Decimal
+            Get
+                Return CType(Me("Tfivesixteenths"),Decimal)
+            End Get
+            Set
+                Me("Tfivesixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tthreeeighths() As Decimal
+            Get
+                Return CType(Me("Tthreeeighths"),Decimal)
+            End Get
+            Set
+                Me("Tthreeeighths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tsevensixteenths() As Decimal
+            Get
+                Return CType(Me("Tsevensixteenths"),Decimal)
+            End Get
+            Set
+                Me("Tsevensixteenths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tonehalf() As Decimal
+            Get
+                Return CType(Me("Tonehalf"),Decimal)
+            End Get
+            Set
+                Me("Tonehalf") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tfiveeighths() As Decimal
+            Get
+                Return CType(Me("Tfiveeighths"),Decimal)
+            End Get
+            Set
+                Me("Tfiveeighths") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property Tthreefourths() As Decimal
+            Get
+                Return CType(Me("Tthreefourths"),Decimal)
+            End Get
+            Set
+                Me("Tthreefourths") = value
+            End Set
         End Property
     End Class
 End Namespace

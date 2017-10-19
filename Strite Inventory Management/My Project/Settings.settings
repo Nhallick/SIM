@@ -10,5 +10,65 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=Microsoft.ACE.OLEDB.12.0;Data Source="P:\Tool &amp; Cutter Grinding\Tool Cutter Database.accdb"</Value>
     </Setting>
+    <Setting Name="oneeighth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">6.00</Value>
+    </Setting>
+    <Setting Name="threesixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">14.30</Value>
+    </Setting>
+    <Setting Name="fifteensixtyfourths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">11.55</Value>
+    </Setting>
+    <Setting Name="onefourth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">14.18</Value>
+    </Setting>
+    <Setting Name="fivesixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">7.05</Value>
+    </Setting>
+    <Setting Name="threeeighths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">24.01</Value>
+    </Setting>
+    <Setting Name="sevensixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">14.75</Value>
+    </Setting>
+    <Setting Name="onehalf" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">37.16</Value>
+    </Setting>
+    <Setting Name="fiveeighths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">46.36</Value>
+    </Setting>
+    <Setting Name="threefourths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">79.35</Value>
+    </Setting>
+    <Setting Name="Toneeighth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tthreesixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tfifteensixtyfourths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tonefourth" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tfivesixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tthreeeighths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tsevensixteenths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tonehalf" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tfiveeighths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Tthreefourths" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
