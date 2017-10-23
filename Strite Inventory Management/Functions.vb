@@ -190,6 +190,8 @@ Public Module Functions
                 Dim loopflag As Boolean = False
                 Dim rejectresult As String = vbNo
                 Dim TCost As Decimal
+                Dim INVCost As String = "!!NSD!!"
+                Dim nosizeflag As Boolean = False
 
 
                 Dim toolsplit() As String = Split(ToolName, " ")
@@ -238,6 +240,8 @@ Public Module Functions
                         TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
                     Case "test"
                         TCost = 123.45
+                    Case Else
+                        nosizeflag = True
                 End Select
 
                 dbconn.Close()
@@ -249,7 +253,13 @@ Public Module Functions
                 Dim Str4 As String = "UPDATE [CutterOrders] set [Approval] = ""Submitted For Approval"" WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "')"
 
                 'updates quantity in the inventory based on the quantity made in the order
-                Dim Str2 As String = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] + '" & QtyToMake & "', [Order Placed]= ""N"", [Date Updated]= '" & Date.Now & "', [Cost] = [Cost] + '" & (TCost * QtyToMake) & "' WHERE [Tool] = '" & ToolName & "'"
+                Dim str2 As String
+                If nosizeflag = True Then
+                    str2 = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] + '" & QtyToMake & "', [Order Placed]= ""N"", [Date Updated]= '" & Date.Now & "', [Cost] = [Cost] + '" & (INVCost) & "' WHERE [Tool] = '" & ToolName & "'"
+                Else
+                    str2 = "UPDATE [ToolRoomInventory] set [Quantity] = [Quantity] + '" & QtyToMake & "', [Order Placed]= ""N"", [Date Updated]= '" & Date.Now & "', [Cost] = [Cost] + '" & (TCost * QtyToMake) & "' WHERE [Tool] = '" & ToolName & "'"
+                End If
+
 
                 'used to count the number of tools in inventory with a certain name. Used primarily to check if a tool exists in the inventory already or not
                 Dim count As String = "SELECT Count(*) AS Expr1, Tool FROM [ToolRoomInventory] GROUP BY Tool HAVING (Tool = '" & ToolName & "')"
