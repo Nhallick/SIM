@@ -11,3 +11,7 @@ v1.2.1
 *Thursday, October 19th 2017 1:55 PM*
 -Added functionality of the lblinventoryvalue object. It will now flash on an inventory change and indicate wether the value increased or decreased (green for increase and red for decrease). the text colour will stay either red or green after the update to indicate what the last transaction was.
 ---------------------------------------------------------------------------------------------------------------------------
+v1.2.2
+*Monday, October 23rd 2017 11:14 AM*
+-Added functionality to set tools with no size data to have a cost of $0.00
+---------------------------------------------------------------------------------------------------------------------------
