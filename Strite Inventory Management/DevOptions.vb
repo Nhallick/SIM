@@ -33,7 +33,7 @@
 
     Private Sub BTNApply_Click(sender As Object, e As EventArgs) Handles BTNApply.Click
         Dim tbarr(19) As TextBox
-        'Material Textboxes*****************
+        'Material Text boxes*****************
         tbarr(0) = TBoneeighthM
         tbarr(1) = TBthreesixteenthsM
         tbarr(2) = TBfifteensixtyfourthsM
@@ -46,7 +46,7 @@
         tbarr(9) = TBthreefourthsM
         '***********************************
 
-        'Time Textboxes*****************
+        'Time Text boxes*****************
         tbarr(10) = TBToneeighth
         tbarr(11) = TBTthreesixteenths
         tbarr(12) = TBTfifteensixtyfourths
@@ -63,7 +63,7 @@
 
         For Each item In tbarr
             If Not IsNumeric(item.Text) Then
-                MsgBox("All textboxes must be filled out containing a decimal value for cost.", vbCritical, "Error")
+                MsgBox("All text boxes must be filled out containing a decimal value for cost.", vbCritical, "Error")
                 Exit Sub
             End If
         Next
