@@ -77,7 +77,7 @@ Public Class StriteInventoryManagement
 
     Private Sub TMRRefresh_Tick(sender As Object, e As EventArgs) Handles TMRRefresh.Tick
         Dim i As Integer
-        'refresh the user datagridview using the timer interval (1 second is probably the best interval, could be longer if necessary) (Is currently 1.1 seconds as of 08/08/2017)
+        'refresh the user datagridview using the timer interval (1 second is probably the best interval, could be longer if neccessary) (Is currently 1.1 seconds as of 08/08/2017)
         DGVRefresh("Users", DGVUsers)
 
         'Use a for loop to go through each item in the datagridview. If a user is online change the status cell green, if they are offline change the cell to red.
