@@ -39,7 +39,7 @@ Public Module Functions
         'create new dataadapter object using the sql string from above and the connection created above
         Dadapter = New OleDbDataAdapter(str, dbconn)
 
-        'create new command builder in order to excecute the SELECT SQL statement using the dataadapter created (da)
+        'create new command builder in order to execute the SELECT SQL statement using the dataadapter created (da)
         'specify prefix and suffix for cb
         Dim cb = New OleDbCommandBuilder(Dadapter) With {
             .QuotePrefix = "[",
@@ -318,7 +318,7 @@ Public Module Functions
                 'Count number of records matching 'ToolName' (should only be 1)
                 Dim cb2 As New OleDbCommand(count, dbconn)
                 dbconn.Open()
-                'use excecute scalar command when using a COUNT command
+                'use execute scalar command when using a COUNT command
                 Countresult = cb2.ExecuteScalar
                 dbconn.Close()
                 'use count result to determine which str operation to invoke (0 means the tool does not exist in the inventory)
@@ -410,7 +410,7 @@ Public Module Functions
 
             Dim cb2 As New OleDbCommand(count, dbconn)
             dbconn.Open()
-            'use excecute scalar command when using a COUNT command
+            'use execute scalar command when using a COUNT command
             countresult = cb2.ExecuteScalar
             dbconn.Close()
 
@@ -749,9 +749,9 @@ Public Module Functions
         If dgv.Rows.Count = 0 Then
             Exit Sub
         End If
-        'checks if the textbox is blank and informs user that the textbox cannot be blank. if it is not blank then set the tool variable to the textbox text
+        'checks if the text box is blank and informs user that the text box cannot be blank. if it is not blank then set the tool variable to the text box text
         If tb.Text = "" Then
-            MsgBox("The search textbox cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
+            MsgBox("The search text box cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
             Exit Sub
         Else
             tool = tb.Text
@@ -810,7 +810,7 @@ Public Module Functions
         'run through each item in the data grid view using a for loop
         For Each item In dgv.Rows
             dbitem = Dtable.Rows(i).Item(10).ToString
-            'compare the date column of the datagridview with the date column in the database. If they dont match then update the inventory datagridview on the monitoring screen
+            'compare the date column of the datagridview with the date column in the database. If they don't match then update the inventory datagridview on the monitoring screen
             If (dgv(5, i).Value) <> (dbitem) Then
                 Monitoring.ToolRoomInventoryTableAdapter.Fill(Monitoring.Tool_Cutter_DatabaseDataSet.ToolRoomInventory)
                 Exit For
@@ -928,9 +928,9 @@ Public Module Functions
         Dim toolfound As Boolean = False
         Dim i As Integer = 0
 
-        'checks if the textbox is blank and informs user that the textbox cannot be blank. if it is not blank then set the tool variable to the textbox text
+        'checks if the text box is blank and informs user that the text box cannot be blank. if it is not blank then set the tool variable to the text box text
         If tb.Text = "" Then
-            MsgBox("The search textbox cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
+            MsgBox("The search text box cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
             Exit Sub
         Else
             tool = tb.Text
@@ -958,6 +958,6 @@ Public Module Functions
 End Module
 
 Public Module GlobalVariables
-    'Global variable created in order to be used accross all forms which signals certain subs to update dgv's
+    'Global variable created in order to be used across all forms which signals certain subs to update dgv's
     Public UpdateRequired As Boolean
 End Module
