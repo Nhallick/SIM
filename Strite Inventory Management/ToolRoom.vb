@@ -61,7 +61,7 @@ Public Class ToolRoom
                 Dim cb2 As New OleDbCommand(count, dbconn)
                 dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 dbconn.Open()
-                'use excecute scalar command when using a COUNT command
+                'use execute scalar command when using a COUNT command
                 countresult = cb2.ExecuteScalar
                 dbconn.Close()
 
@@ -183,7 +183,7 @@ Public Class ToolRoom
 
     Private Sub BTNReject_Click(sender As Object, e As EventArgs) Handles BTNReject.Click
 
-        'when the reject button is pushed the currelty selected order is processed according to the "toolRoomAcceptReject" sub (in this case it is put into a sort of limbo and no longer shows up in this program anymore. The order is kept in the database for future review)
+        'when the reject button is pushed the currently selected order is processed according to the "toolRoomAcceptReject" sub (in this case it is put into a sort of limbo and no longer shows up in this program anymore. The order is kept in the database for future review)
         ToolRoomAcceptReject("Rejected", DGVSubOrders)
 
         'update the orders datagridview with all submitted orders
@@ -227,13 +227,13 @@ Public Class ToolRoom
     End Sub
 
     Private Sub TBSearch_GotFocus(sender As Object, e As EventArgs) Handles TBSearch.GotFocus
-        'this sub is invoked when the user activates the search textbox
+        'this sub is invoked when the user activates the search text box
         If DGVInventory.Rows.Count <> 0 Then
-            'dim a new specialized array in order to contain all strings used for the autocomplete function of the textbox
+            'dim a new specialized array in order to contain all strings used for the auto-complete function of the text box
             Dim Tools As New AutoCompleteStringCollection
             Dim i As Integer = 0
 
-            'clear the autocomplete array before populating as to not just append values each time
+            'clear the auto-complete array before populating as to not just append values each time
             TBSearch.AutoCompleteCustomSource.Clear()
 
             'use a loop run as many times as there are rows in the datagridview
@@ -263,7 +263,7 @@ Public Class ToolRoom
     End Sub
 
     Private Sub TBOrderSearch_GotFocus(sender As Object, e As EventArgs) Handles TBOrderSearch.GotFocus
-        'this sub is used to populate the autocomplete form of the order search textbox
+        'this sub is used to populate the auto-complete form of the order search text box
         If DGVSubOrders.Rows.Count <> 0 Then
             Dim Orders As New AutoCompleteStringCollection
             Dim i As Integer = 0
