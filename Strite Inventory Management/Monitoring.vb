@@ -152,7 +152,7 @@ Public Class Monitoring
         'Dim name As String() = {"N", "I", "C", "K", "I", "S", "C", "O", "O", "L"}
 
         ' Dim i As Integer = 1
-        'this do loop plays a series of 20 scaling notes before running the rest of the code because I wanted to see if I could do it. I could so im keeping it.
+        'this do loop plays a series of 20 scaling notes before running the rest of the code because I wanted to see if I could do it. I could so I'm keeping it.
         ' Do
         'Console.Beep(i * 100, 100)
         ' Try
@@ -216,11 +216,11 @@ Public Class Monitoring
                 End If
 
                 If dgvInventory.Rows.Count <> 0 Then
-                    'dim a new specialized array in order to contain all strings used for the autocomplete function of the textbox
+                    'dim a new specialized array in order to contain all strings used for the auto-complete function of the text box
                     Dim Tools As New AutoCompleteStringCollection
                     Dim i As Integer = 0
 
-                    'clear the autocomplete array before populating as to not just append values each time
+                    'clear the auto-complete array before populating as to not just append values each time
                     TBSearch.AutoCompleteCustomSource.Clear()
 
                     'use a loop run as many times as there are rows in the datagridview
@@ -260,11 +260,11 @@ Public Class Monitoring
     End Sub
     Public Sub Populateautocomplete(ByRef tb As TextBox, ByVal dgv As DataGridView)
         If dgv.Rows.Count <> 0 Then
-            'dim a new specialized array in order to contain all strings used for the autocomplete function of the textbox
+            'dim a new specialized array in order to contain all strings used for the auto-complete function of the text box
             Dim Tools As New AutoCompleteStringCollection
             Dim i As Integer = 0
 
-            'clear the autocomplete array before populating as to not just append values each time
+            'clear the auto-complete array before populating as to not just append values each time
             tb.AutoCompleteCustomSource.Clear()
 
             'use a loop run as many times as there are rows in the datagridview
@@ -314,9 +314,9 @@ Public Class Monitoring
         End If
 
 
-        'checks if the textbox is blank and informs user that the textbox cannot be blank. if it is not blank then set the tool variable to the textbox text
+        'checks if the text box is blank and informs user that the text box cannot be blank. if it is not blank then set the tool variable to the text box text
         If tb.Text = "" Then
-            MsgBox("The search textbox cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
+            MsgBox("The search text box cannot be blank. Please enter a tool name to search.", vbCritical, "Error")
             Exit Sub
         Else
             tool = tb.Text
