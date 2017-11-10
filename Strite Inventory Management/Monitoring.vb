@@ -15,7 +15,7 @@ Public Class Monitoring
     Dim FR As Boolean
     Dim alternate As Boolean
     Private Sub Monitoring_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'Sub used when loading the form
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet1.ToolRoomInventory' table. You can move, or remove it, as needed.
         ToolRoomInventoryTableAdapter.Fill(Tool_Cutter_DatabaseDataSet1.ToolRoomInventory)
 
