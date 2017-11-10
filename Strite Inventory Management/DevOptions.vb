@@ -29,7 +29,6 @@
         TBTfiveeighths.Text = My.Settings.Tfiveeighths
         TBTthreefourths.Text = My.Settings.Tthreefourths
         '***************************************************************************************
-        TBInterval.Text = My.Settings.timerinterval
     End Sub
 
     Private Sub BTNApply_Click(sender As Object, e As EventArgs) Handles BTNApply.Click
@@ -93,17 +92,9 @@
         My.Settings.Tfiveeighths = TBTfiveeighths.Text
         My.Settings.Tthreefourths = TBTthreefourths.Text
         '*********************************************************************************************
-
-        If TBInterval.Text < 0 Then
-            MsgBox("Timer interval value must be greater than 0", vbCritical, "Error")
-        Else
-            My.Settings.timerinterval = TBInterval.Text
-            Monitoring.tmrRefresh.Interval = My.Settings.timerinterval
-        End If
-
         My.Settings.Save()
 
-        MsgBox("Material Pricing (Blanks and Coatings) and refresh timer has been updated", vbInformation, "Update")
+        MsgBox("Material Pricing (Blanks and Coatings) have been updated", vbInformation, "Update")
     End Sub
 
     Private Sub BTNCostTHelp_Click(sender As Object, e As EventArgs) Handles BTNCostTHelp.DoubleClick
@@ -137,6 +128,4 @@
         TBTthreefourths.Text = My.Settings.Tthreefourths
         '***************************************************************************************
     End Sub
-
-
 End Class
