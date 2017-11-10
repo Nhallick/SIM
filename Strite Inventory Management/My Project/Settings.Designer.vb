@@ -328,6 +328,18 @@ Namespace My
                 Me("InventoryVal") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property timerinterval() As Integer
+            Get
+                Return CType(Me("timerinterval"),Integer)
+            End Get
+            Set
+                Me("timerinterval") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
