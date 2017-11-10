@@ -956,6 +956,7 @@ Public Module Functions
         End If
     End Sub
 End Module
+
 Public Module GlobalVariables
     'Global variable created in order to be used across all forms which signals certain subs to update dgv's
     Public UpdateRequired As Boolean

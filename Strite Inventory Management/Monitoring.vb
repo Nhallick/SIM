@@ -37,12 +37,10 @@ Public Class Monitoring
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
         flashcount = 0
-        My.Settings.timerinterval = tmrRefresh.Interval
-        My.Settings.Save()
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
-        PBRefresh.Value = 0
+
         'DGVUpdate(dgvInventory)
         'refresh user datagridview each timer cycle
         DGVRefresh("Users", dgvUsers)
@@ -65,7 +63,7 @@ Public Class Monitoring
         If (CutterOrdersTableAdapter.CountRecords <> dgvOrders.RowCount) Or (UpdateRequired = True) Then
             CutterOrdersTableAdapter.Fill(Tool_Cutter_DatabaseDataSet.CutterOrders)
         End If
-        PBRefresh.Value = PBRefresh.Maximum * 0.25
+
         'if the datagridview (signed out cutters) rows does not equal zero then set the current cell to the cell saved earlier before the update. This maintains the position of the selected cell after the update.
         If dgvSignedOut.Rows.Count <> 0 Then
             dgvSignedOut.CurrentCell = dgvSignedOut.Rows(usercellsignedout.Y).Cells(usercellsignedout.X)
@@ -88,7 +86,7 @@ Public Class Monitoring
                 'MsgBox(Convert.ToString(ex),vbcritical)
             End Try
         End If
-        PBRefresh.Value = PBRefresh.Maximum * 0.5
+
         'Update is complete so set the updaterequired flag to false
         UpdateRequired = False
 
@@ -103,7 +101,7 @@ Public Class Monitoring
             FG = False
             flashcount = 3
         Else
-            'FG = False And False Or True XOR True And Not False Or True
+            'FG = False
             'FR = False
             'lblbInventoryValue.ForeColor = Color.Black
             'lblbInventoryValue.BackColor = Color.Transparent
@@ -114,7 +112,7 @@ Public Class Monitoring
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         My.Settings.SignedOutVal = SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
-        PBRefresh.Value = PBRefresh.Maximum * 0.75
+
         If flashcount > 0 Then
             If FG = True Then
                 If lblbInventoryValue.BackColor = Color.Transparent Then
@@ -147,7 +145,7 @@ Public Class Monitoring
             lblbInventoryValue.BackColor = Color.Transparent
             flashcount = 0
         End If
-        PBRefresh.Value = PBRefresh.Maximum
+
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
@@ -271,6 +269,7 @@ Public Class Monitoring
 
             'use a loop run as many times as there are rows in the datagridview
             Do
+
                 'add a new entry to the array using the current row of the datagridview. The row is changed each time the loop is looped using the "i" variable
                 Tools.Add(dgv(1, i).Value)
                 i = i + 1
