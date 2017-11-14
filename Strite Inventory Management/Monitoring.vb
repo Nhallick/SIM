@@ -14,6 +14,7 @@ Public Class Monitoring
     Dim FG As Boolean
     Dim FR As Boolean
     Dim alternate As Boolean
+
     Private Sub Monitoring_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet1.ToolRoomInventory' table. You can move, or remove it, as needed.
@@ -37,10 +38,13 @@ Public Class Monitoring
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
         flashcount = 0
+        tmrRefresh.Interval = My.Settings.TInterval
+        PBRefresh.Maximum = tmrRefresh.Interval
+        PBRefresh.ForeColor = Color.Red
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
-
+        PBRefresh.Value = PBRefresh.Minimum
         'DGVUpdate(dgvInventory)
         'refresh user datagridview each timer cycle
         DGVRefresh("Users", dgvUsers)
@@ -48,7 +52,7 @@ Public Class Monitoring
         usercellsignedout = dgvSignedOut.CurrentCellAddress
         usercellorders = dgvOrders.CurrentCellAddress
         usercellinventory = dgvInventory.CurrentCellAddress
-
+        PBRefresh.Value = PBRefresh.Value * 0.25
         'refresh the inventory datagridview only if the inventory table record count is different than the datagridview row count
         If (ToolRoomInventoryTableAdapter.CountRecords <> dgvInventory.RowCount) Or (UpdateRequired = True) Then
             ToolRoomInventoryTableAdapter.Fill(Tool_Cutter_DatabaseDataSet1.ToolRoomInventory)
@@ -77,7 +81,7 @@ Public Class Monitoring
                 'MsgBox(Convert.ToString(ex),vbcritical)
             End Try
         End If
-
+        PBRefresh.Value = PBRefresh.Value * 0.5
         'if the datagridview (Inventory) rows does not equal zero then set the current cell to the cell saved earlier before the update. This maintains the position of the selected cell after the update.
         If dgvInventory.Rows.Count <> 0 Then
             Try
@@ -112,7 +116,7 @@ Public Class Monitoring
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         My.Settings.SignedOutVal = SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
-
+        PBRefresh.Value = PBRefresh.Value * 0.75
         If flashcount > 0 Then
             If FG = True Then
                 If lblbInventoryValue.BackColor = Color.Transparent Then
@@ -145,7 +149,7 @@ Public Class Monitoring
             lblbInventoryValue.BackColor = Color.Transparent
             flashcount = 0
         End If
-
+        PBRefresh.Value = PBRefresh.Maximum
     End Sub
 
     Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click

@@ -29,6 +29,9 @@
         TBTfiveeighths.Text = My.Settings.Tfiveeighths
         TBTthreefourths.Text = My.Settings.Tthreefourths
         '***************************************************************************************
+
+        tbrefresh.Text = My.Settings.TInterval.ToString
+
     End Sub
 
     Private Sub BTNApply_Click(sender As Object, e As EventArgs) Handles BTNApply.Click
@@ -92,9 +95,16 @@
         My.Settings.Tfiveeighths = TBTfiveeighths.Text
         My.Settings.Tthreefourths = TBTthreefourths.Text
         '*********************************************************************************************
+
+        If tbrefresh.Text < 0 Then
+            MsgBox("Refresh interval cannot be less than 0.", vbCritical, "Error")
+        Else
+            My.Settings.TInterval = Convert.ToInt16(tbrefresh.Text)
+            Monitoring.tmrRefresh.Interval = My.Settings.TInterval
+        End If
         My.Settings.Save()
 
-        MsgBox("Material Pricing (Blanks and Coatings) have been updated", vbInformation, "Update")
+        MsgBox("Material Pricing (Blanks and Coatings) and monitor form refresh have been updated", vbInformation, "Update")
     End Sub
 
     Private Sub BTNCostTHelp_Click(sender As Object, e As EventArgs) Handles BTNCostTHelp.DoubleClick

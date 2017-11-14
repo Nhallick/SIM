@@ -69,6 +69,8 @@ Partial Class DevOptions
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.BTNReset = New System.Windows.Forms.Button()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.tbrefresh = New System.Windows.Forms.TextBox()
         Me.GBCosting.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -295,7 +297,7 @@ Partial Class DevOptions
         'BTNApply
         '
         Me.BTNApply.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BTNApply.Location = New System.Drawing.Point(282, 457)
+        Me.BTNApply.Location = New System.Drawing.Point(282, 504)
         Me.BTNApply.Name = "BTNApply"
         Me.BTNApply.Size = New System.Drawing.Size(75, 23)
         Me.BTNApply.TabIndex = 1
@@ -524,18 +526,37 @@ Partial Class DevOptions
         '
         'BTNReset
         '
-        Me.BTNReset.Location = New System.Drawing.Point(12, 457)
+        Me.BTNReset.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.BTNReset.Location = New System.Drawing.Point(12, 504)
         Me.BTNReset.Name = "BTNReset"
         Me.BTNReset.Size = New System.Drawing.Size(75, 23)
         Me.BTNReset.TabIndex = 2
         Me.BTNReset.Text = "Reset"
         Me.BTNReset.UseVisualStyleBackColor = True
         '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(12, 461)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(133, 13)
+        Me.Label21.TabIndex = 3
+        Me.Label21.Text = "Monitor Refresh Rate (ms):"
+        '
+        'tbrefresh
+        '
+        Me.tbrefresh.Location = New System.Drawing.Point(15, 477)
+        Me.tbrefresh.Name = "tbrefresh"
+        Me.tbrefresh.Size = New System.Drawing.Size(100, 20)
+        Me.tbrefresh.TabIndex = 4
+        '
         'DevOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(369, 492)
+        Me.ClientSize = New System.Drawing.Size(369, 539)
+        Me.Controls.Add(Me.tbrefresh)
+        Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.BTNReset)
         Me.Controls.Add(Me.BTNApply)
         Me.Controls.Add(Me.GroupBox1)
@@ -553,6 +574,7 @@ Partial Class DevOptions
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -602,4 +624,6 @@ Partial Class DevOptions
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents BTNReset As Button
+    Friend WithEvents Label21 As Label
+    Friend WithEvents tbrefresh As TextBox
 End Class
