@@ -24,9 +24,9 @@ Partial Class ToolRoom
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ToolRoom))
         Me.GBInventory = New System.Windows.Forms.GroupBox()
         Me.btnNew = New System.Windows.Forms.Button()
@@ -35,6 +35,12 @@ Partial Class ToolRoom
         Me.BTNEdit = New System.Windows.Forms.Button()
         Me.BTNSignOut = New System.Windows.Forms.Button()
         Me.DGVInventory = New System.Windows.Forms.DataGridView()
+        Me.QuantityDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MaxBinSizeDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MinBinSizeDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderPlacedDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateUpdatedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolRoomInventoryBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.Tool_Cutter_DatabaseDataSet2 = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.GBSubmittedOrders = New System.Windows.Forms.GroupBox()
@@ -43,6 +49,11 @@ Partial Class ToolRoom
         Me.BTNReject = New System.Windows.Forms.Button()
         Me.BTNAccept = New System.Windows.Forms.Button()
         Me.DGVSubOrders = New System.Windows.Forms.DataGridView()
+        Me.QtyToMakeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateSubmittedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ApprovalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateMadeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CutterOrdersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Tool_Cutter_DatabaseDataSet = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.TMRRefresh = New System.Windows.Forms.Timer(Me.components)
@@ -62,17 +73,6 @@ Partial Class ToolRoom
         Me.Tool_Cutter_DatabaseDataSet1 = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.ToolRoomInventoryTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.ToolRoomInventoryTableAdapter()
         Me.CutterOrdersTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.CutterOrdersTableAdapter()
-        Me.QtyToMakeDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateSubmittedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ApprovalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateMadeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.QuantityDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MaxBinSizeDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MinBinSizeDataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrderPlacedDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateUpdatedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.GBInventory.SuspendLayout()
         CType(Me.DGVInventory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ToolRoomInventoryBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,9 +177,49 @@ Partial Class ToolRoom
         Me.DGVInventory.Location = New System.Drawing.Point(6, 19)
         Me.DGVInventory.MultiSelect = False
         Me.DGVInventory.Name = "DGVInventory"
+        Me.DGVInventory.RowHeadersVisible = False
         Me.DGVInventory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGVInventory.Size = New System.Drawing.Size(640, 463)
         Me.DGVInventory.TabIndex = 0
+        '
+        'QuantityDataGridViewTextBoxColumn2
+        '
+        Me.QuantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity"
+        Me.QuantityDataGridViewTextBoxColumn2.HeaderText = "Quantity"
+        Me.QuantityDataGridViewTextBoxColumn2.Name = "QuantityDataGridViewTextBoxColumn2"
+        '
+        'ToolDataGridViewTextBoxColumn2
+        '
+        Me.ToolDataGridViewTextBoxColumn2.DataPropertyName = "Tool"
+        Me.ToolDataGridViewTextBoxColumn2.HeaderText = "Tool"
+        Me.ToolDataGridViewTextBoxColumn2.Name = "ToolDataGridViewTextBoxColumn2"
+        '
+        'MaxBinSizeDataGridViewTextBoxColumn2
+        '
+        Me.MaxBinSizeDataGridViewTextBoxColumn2.DataPropertyName = "Max Bin Size"
+        Me.MaxBinSizeDataGridViewTextBoxColumn2.HeaderText = "Max Bin Size"
+        Me.MaxBinSizeDataGridViewTextBoxColumn2.Name = "MaxBinSizeDataGridViewTextBoxColumn2"
+        '
+        'MinBinSizeDataGridViewTextBoxColumn2
+        '
+        Me.MinBinSizeDataGridViewTextBoxColumn2.DataPropertyName = "Min Bin Size"
+        Me.MinBinSizeDataGridViewTextBoxColumn2.HeaderText = "Min Bin Size"
+        Me.MinBinSizeDataGridViewTextBoxColumn2.Name = "MinBinSizeDataGridViewTextBoxColumn2"
+        '
+        'OrderPlacedDataGridViewTextBoxColumn1
+        '
+        Me.OrderPlacedDataGridViewTextBoxColumn1.DataPropertyName = "Order Placed"
+        Me.OrderPlacedDataGridViewTextBoxColumn1.HeaderText = "Order Placed"
+        Me.OrderPlacedDataGridViewTextBoxColumn1.Name = "OrderPlacedDataGridViewTextBoxColumn1"
+        '
+        'DateUpdatedDataGridViewTextBoxColumn
+        '
+        Me.DateUpdatedDataGridViewTextBoxColumn.DataPropertyName = "Date Updated"
+        DataGridViewCellStyle1.Format = "G"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.DateUpdatedDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
+        Me.DateUpdatedDataGridViewTextBoxColumn.HeaderText = "Date Updated"
+        Me.DateUpdatedDataGridViewTextBoxColumn.Name = "DateUpdatedDataGridViewTextBoxColumn"
         '
         'ToolRoomInventoryBindingSource1
         '
@@ -249,6 +289,7 @@ Partial Class ToolRoom
         '
         Me.DGVSubOrders.AllowUserToAddRows = False
         Me.DGVSubOrders.AllowUserToDeleteRows = False
+        Me.DGVSubOrders.AllowUserToResizeRows = False
         Me.DGVSubOrders.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -267,12 +308,54 @@ Partial Class ToolRoom
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DGVSubOrders.DefaultCellStyle = DataGridViewCellStyle4
         Me.DGVSubOrders.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DGVSubOrders.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.DGVSubOrders.Location = New System.Drawing.Point(6, 19)
         Me.DGVSubOrders.MultiSelect = False
         Me.DGVSubOrders.Name = "DGVSubOrders"
+        Me.DGVSubOrders.ReadOnly = True
+        Me.DGVSubOrders.RowHeadersVisible = False
         Me.DGVSubOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DGVSubOrders.ShowEditingIcon = False
         Me.DGVSubOrders.Size = New System.Drawing.Size(432, 463)
         Me.DGVSubOrders.TabIndex = 0
+        '
+        'QtyToMakeDataGridViewTextBoxColumn1
+        '
+        Me.QtyToMakeDataGridViewTextBoxColumn1.DataPropertyName = "QtyToMake"
+        Me.QtyToMakeDataGridViewTextBoxColumn1.HeaderText = "QtyToMake"
+        Me.QtyToMakeDataGridViewTextBoxColumn1.Name = "QtyToMakeDataGridViewTextBoxColumn1"
+        Me.QtyToMakeDataGridViewTextBoxColumn1.ReadOnly = True
+        '
+        'ToolNameDataGridViewTextBoxColumn
+        '
+        Me.ToolNameDataGridViewTextBoxColumn.DataPropertyName = "Tool Name"
+        Me.ToolNameDataGridViewTextBoxColumn.HeaderText = "Tool Name"
+        Me.ToolNameDataGridViewTextBoxColumn.Name = "ToolNameDataGridViewTextBoxColumn"
+        Me.ToolNameDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateSubmittedDataGridViewTextBoxColumn
+        '
+        Me.DateSubmittedDataGridViewTextBoxColumn.DataPropertyName = "Date Submitted"
+        Me.DateSubmittedDataGridViewTextBoxColumn.HeaderText = "Date Submitted"
+        Me.DateSubmittedDataGridViewTextBoxColumn.Name = "DateSubmittedDataGridViewTextBoxColumn"
+        Me.DateSubmittedDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'ApprovalDataGridViewTextBoxColumn
+        '
+        Me.ApprovalDataGridViewTextBoxColumn.DataPropertyName = "Approval"
+        Me.ApprovalDataGridViewTextBoxColumn.HeaderText = "Approval"
+        Me.ApprovalDataGridViewTextBoxColumn.Name = "ApprovalDataGridViewTextBoxColumn"
+        Me.ApprovalDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'DateMadeDataGridViewTextBoxColumn
+        '
+        Me.DateMadeDataGridViewTextBoxColumn.DataPropertyName = "Date Made"
+        DataGridViewCellStyle3.Format = "G"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.DateMadeDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DateMadeDataGridViewTextBoxColumn.HeaderText = "Date Made"
+        Me.DateMadeDataGridViewTextBoxColumn.Name = "DateMadeDataGridViewTextBoxColumn"
+        Me.DateMadeDataGridViewTextBoxColumn.ReadOnly = True
         '
         'CutterOrdersBindingSource
         '
@@ -387,78 +470,6 @@ Partial Class ToolRoom
         'CutterOrdersTableAdapter
         '
         Me.CutterOrdersTableAdapter.ClearBeforeFill = True
-        '
-        'QtyToMakeDataGridViewTextBoxColumn1
-        '
-        Me.QtyToMakeDataGridViewTextBoxColumn1.DataPropertyName = "QtyToMake"
-        Me.QtyToMakeDataGridViewTextBoxColumn1.HeaderText = "QtyToMake"
-        Me.QtyToMakeDataGridViewTextBoxColumn1.Name = "QtyToMakeDataGridViewTextBoxColumn1"
-        '
-        'ToolNameDataGridViewTextBoxColumn
-        '
-        Me.ToolNameDataGridViewTextBoxColumn.DataPropertyName = "Tool Name"
-        Me.ToolNameDataGridViewTextBoxColumn.HeaderText = "Tool Name"
-        Me.ToolNameDataGridViewTextBoxColumn.Name = "ToolNameDataGridViewTextBoxColumn"
-        '
-        'DateSubmittedDataGridViewTextBoxColumn
-        '
-        Me.DateSubmittedDataGridViewTextBoxColumn.DataPropertyName = "Date Submitted"
-        Me.DateSubmittedDataGridViewTextBoxColumn.HeaderText = "Date Submitted"
-        Me.DateSubmittedDataGridViewTextBoxColumn.Name = "DateSubmittedDataGridViewTextBoxColumn"
-        '
-        'ApprovalDataGridViewTextBoxColumn
-        '
-        Me.ApprovalDataGridViewTextBoxColumn.DataPropertyName = "Approval"
-        Me.ApprovalDataGridViewTextBoxColumn.HeaderText = "Approval"
-        Me.ApprovalDataGridViewTextBoxColumn.Name = "ApprovalDataGridViewTextBoxColumn"
-        '
-        'DateMadeDataGridViewTextBoxColumn
-        '
-        Me.DateMadeDataGridViewTextBoxColumn.DataPropertyName = "Date Made"
-        DataGridViewCellStyle3.Format = "G"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.DateMadeDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DateMadeDataGridViewTextBoxColumn.HeaderText = "Date Made"
-        Me.DateMadeDataGridViewTextBoxColumn.Name = "DateMadeDataGridViewTextBoxColumn"
-        '
-        'QuantityDataGridViewTextBoxColumn2
-        '
-        Me.QuantityDataGridViewTextBoxColumn2.DataPropertyName = "Quantity"
-        Me.QuantityDataGridViewTextBoxColumn2.HeaderText = "Quantity"
-        Me.QuantityDataGridViewTextBoxColumn2.Name = "QuantityDataGridViewTextBoxColumn2"
-        '
-        'ToolDataGridViewTextBoxColumn2
-        '
-        Me.ToolDataGridViewTextBoxColumn2.DataPropertyName = "Tool"
-        Me.ToolDataGridViewTextBoxColumn2.HeaderText = "Tool"
-        Me.ToolDataGridViewTextBoxColumn2.Name = "ToolDataGridViewTextBoxColumn2"
-        '
-        'MaxBinSizeDataGridViewTextBoxColumn2
-        '
-        Me.MaxBinSizeDataGridViewTextBoxColumn2.DataPropertyName = "Max Bin Size"
-        Me.MaxBinSizeDataGridViewTextBoxColumn2.HeaderText = "Max Bin Size"
-        Me.MaxBinSizeDataGridViewTextBoxColumn2.Name = "MaxBinSizeDataGridViewTextBoxColumn2"
-        '
-        'MinBinSizeDataGridViewTextBoxColumn2
-        '
-        Me.MinBinSizeDataGridViewTextBoxColumn2.DataPropertyName = "Min Bin Size"
-        Me.MinBinSizeDataGridViewTextBoxColumn2.HeaderText = "Min Bin Size"
-        Me.MinBinSizeDataGridViewTextBoxColumn2.Name = "MinBinSizeDataGridViewTextBoxColumn2"
-        '
-        'OrderPlacedDataGridViewTextBoxColumn1
-        '
-        Me.OrderPlacedDataGridViewTextBoxColumn1.DataPropertyName = "Order Placed"
-        Me.OrderPlacedDataGridViewTextBoxColumn1.HeaderText = "Order Placed"
-        Me.OrderPlacedDataGridViewTextBoxColumn1.Name = "OrderPlacedDataGridViewTextBoxColumn1"
-        '
-        'DateUpdatedDataGridViewTextBoxColumn
-        '
-        Me.DateUpdatedDataGridViewTextBoxColumn.DataPropertyName = "Date Updated"
-        DataGridViewCellStyle1.Format = "G"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.DateUpdatedDataGridViewTextBoxColumn.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DateUpdatedDataGridViewTextBoxColumn.HeaderText = "Date Updated"
-        Me.DateUpdatedDataGridViewTextBoxColumn.Name = "DateUpdatedDataGridViewTextBoxColumn"
         '
         'ToolRoom
         '

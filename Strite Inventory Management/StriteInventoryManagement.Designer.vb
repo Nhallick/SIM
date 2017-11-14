@@ -106,6 +106,7 @@ Partial Class StriteInventoryManagement
         Me.DGVUsers.MultiSelect = False
         Me.DGVUsers.Name = "DGVUsers"
         Me.DGVUsers.ReadOnly = True
+        Me.DGVUsers.RowHeadersVisible = False
         Me.DGVUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DGVUsers.ShowEditingIcon = False
         Me.DGVUsers.Size = New System.Drawing.Size(428, 383)
