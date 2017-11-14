@@ -15,3 +15,7 @@ v1.2.2
 *Monday, October 23rd 2017 11:14 AM*
 -Added functionality to set tools with no size data to have a cost of $0.00
 ---------------------------------------------------------------------------------------------------------------------------
+v1.2.3
+*Tuesday, November 14th 2017 11:26 AM*
+-Added progressbar for showing refresh progress and the ability to change the refresh interval on the monitor form
+---------------------------------------------------------------------------------------------------------------------------
