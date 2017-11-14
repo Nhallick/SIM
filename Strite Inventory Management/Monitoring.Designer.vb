@@ -27,71 +27,72 @@ Partial Class Monitoring
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Monitoring))
         Me.gbInventory = New System.Windows.Forms.GroupBox()
         Me.dgvInventory = New System.Windows.Forms.DataGridView()
-        Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MaxBinSizeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MinBinSizeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrderPlacedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateUpdatedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolRoomInventoryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Tool_Cutter_DatabaseDataSet1 = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.GBSignedOut = New System.Windows.Forms.GroupBox()
         Me.dgvSignedOut = New System.Windows.Forms.DataGridView()
-        Me.QuantityDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ShopOrderDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DepartmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cost = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SignedOutCuttersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Tool_Cutter_DatabaseDataSet = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.gbUsers = New System.Windows.Forms.GroupBox()
         Me.dgvUsers = New System.Windows.Forms.DataGridView()
-        Me.UsernameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.InterfaceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UsersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.gbOrders = New System.Windows.Forms.GroupBox()
         Me.dgvOrders = New System.Windows.Forms.DataGridView()
-        Me.QtyToMakeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ToolNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateSubmittedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ApprovalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DateMadeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CutterOrdersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tmrRefresh = New System.Windows.Forms.Timer(Me.components)
         Me.btnRefresh = New System.Windows.Forms.Button()
         Me.BtnSearch = New System.Windows.Forms.Button()
         Me.CBSearch = New System.Windows.Forms.ComboBox()
         Me.TBSearch = New System.Windows.Forms.TextBox()
         Me.BTNDevOptions = New System.Windows.Forms.Button()
+        Me.lblbInventoryValue = New System.Windows.Forms.Label()
+        Me.lblSignedOutValue = New System.Windows.Forms.Label()
+        Me.PBRefresh = New System.Windows.Forms.ProgressBar()
+        Me.QtyToMakeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolNameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateSubmittedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ApprovalDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateMadeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CutterOrdersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Tool_Cutter_DatabaseDataSet = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
+        Me.UsernameDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.InterfaceDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UsersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.QuantityDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ShopOrderDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DepartmentDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SignedOutCuttersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MaxBinSizeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MinBinSizeDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrderPlacedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateUpdatedDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolRoomInventoryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Tool_Cutter_DatabaseDataSet1 = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.ToolRoomInventoryTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.ToolRoomInventoryTableAdapter()
         Me.UsersTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.UsersTableAdapter()
         Me.CutterOrdersTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.CutterOrdersTableAdapter()
         Me.SignedOutCuttersTableAdapter = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSetTableAdapters.SignedOutCuttersTableAdapter()
-        Me.lblbInventoryValue = New System.Windows.Forms.Label()
-        Me.lblSignedOutValue = New System.Windows.Forms.Label()
         Me.gbInventory.SuspendLayout()
         CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBSignedOut.SuspendLayout()
         CType(Me.dgvSignedOut, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbUsers.SuspendLayout()
         CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.UsersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbOrders.SuspendLayout()
         CType(Me.dgvOrders, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CutterOrdersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.UsersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'gbInventory
@@ -141,42 +142,6 @@ Partial Class Monitoring
         Me.dgvInventory.Size = New System.Drawing.Size(900, 377)
         Me.dgvInventory.TabIndex = 0
         '
-        'QuantityDataGridViewTextBoxColumn
-        '
-        Me.QuantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity"
-        Me.QuantityDataGridViewTextBoxColumn.HeaderText = "Quantity"
-        Me.QuantityDataGridViewTextBoxColumn.Name = "QuantityDataGridViewTextBoxColumn"
-        '
-        'ToolDataGridViewTextBoxColumn
-        '
-        Me.ToolDataGridViewTextBoxColumn.DataPropertyName = "Tool"
-        Me.ToolDataGridViewTextBoxColumn.HeaderText = "Tool"
-        Me.ToolDataGridViewTextBoxColumn.Name = "ToolDataGridViewTextBoxColumn"
-        '
-        'MaxBinSizeDataGridViewTextBoxColumn
-        '
-        Me.MaxBinSizeDataGridViewTextBoxColumn.DataPropertyName = "Max Bin Size"
-        Me.MaxBinSizeDataGridViewTextBoxColumn.HeaderText = "Max Bin Size"
-        Me.MaxBinSizeDataGridViewTextBoxColumn.Name = "MaxBinSizeDataGridViewTextBoxColumn"
-        '
-        'MinBinSizeDataGridViewTextBoxColumn
-        '
-        Me.MinBinSizeDataGridViewTextBoxColumn.DataPropertyName = "Min Bin Size"
-        Me.MinBinSizeDataGridViewTextBoxColumn.HeaderText = "Min Bin Size"
-        Me.MinBinSizeDataGridViewTextBoxColumn.Name = "MinBinSizeDataGridViewTextBoxColumn"
-        '
-        'OrderPlacedDataGridViewTextBoxColumn
-        '
-        Me.OrderPlacedDataGridViewTextBoxColumn.DataPropertyName = "Order Placed"
-        Me.OrderPlacedDataGridViewTextBoxColumn.HeaderText = "Order Placed"
-        Me.OrderPlacedDataGridViewTextBoxColumn.Name = "OrderPlacedDataGridViewTextBoxColumn"
-        '
-        'DateUpdatedDataGridViewTextBoxColumn
-        '
-        Me.DateUpdatedDataGridViewTextBoxColumn.DataPropertyName = "Date Updated"
-        Me.DateUpdatedDataGridViewTextBoxColumn.HeaderText = "Date Updated"
-        Me.DateUpdatedDataGridViewTextBoxColumn.Name = "DateUpdatedDataGridViewTextBoxColumn"
-        '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.DataPropertyName = "Cost"
@@ -185,16 +150,6 @@ Partial Class Monitoring
         Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewTextBoxColumn1.HeaderText = "Cost"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'ToolRoomInventoryBindingSource
-        '
-        Me.ToolRoomInventoryBindingSource.DataMember = "ToolRoomInventory"
-        Me.ToolRoomInventoryBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet1
-        '
-        'Tool_Cutter_DatabaseDataSet1
-        '
-        Me.Tool_Cutter_DatabaseDataSet1.DataSetName = "Tool_Cutter_DatabaseDataSet"
-        Me.Tool_Cutter_DatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'GBSignedOut
         '
@@ -233,38 +188,6 @@ Partial Class Monitoring
         Me.dgvSignedOut.Size = New System.Drawing.Size(900, 341)
         Me.dgvSignedOut.TabIndex = 0
         '
-        'QuantityDataGridViewTextBoxColumn1
-        '
-        Me.QuantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.QuantityDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle4
-        Me.QuantityDataGridViewTextBoxColumn1.HeaderText = "Quantity"
-        Me.QuantityDataGridViewTextBoxColumn1.Name = "QuantityDataGridViewTextBoxColumn1"
-        '
-        'ToolDataGridViewTextBoxColumn1
-        '
-        Me.ToolDataGridViewTextBoxColumn1.DataPropertyName = "Tool"
-        Me.ToolDataGridViewTextBoxColumn1.HeaderText = "Tool"
-        Me.ToolDataGridViewTextBoxColumn1.Name = "ToolDataGridViewTextBoxColumn1"
-        '
-        'ShopOrderDataGridViewTextBoxColumn
-        '
-        Me.ShopOrderDataGridViewTextBoxColumn.DataPropertyName = "ShopOrder"
-        Me.ShopOrderDataGridViewTextBoxColumn.HeaderText = "ShopOrder"
-        Me.ShopOrderDataGridViewTextBoxColumn.Name = "ShopOrderDataGridViewTextBoxColumn"
-        '
-        'DepartmentDataGridViewTextBoxColumn
-        '
-        Me.DepartmentDataGridViewTextBoxColumn.DataPropertyName = "Department"
-        Me.DepartmentDataGridViewTextBoxColumn.HeaderText = "Department"
-        Me.DepartmentDataGridViewTextBoxColumn.Name = "DepartmentDataGridViewTextBoxColumn"
-        '
-        'DateDataGridViewTextBoxColumn
-        '
-        Me.DateDataGridViewTextBoxColumn.DataPropertyName = "Date"
-        Me.DateDataGridViewTextBoxColumn.HeaderText = "Date"
-        Me.DateDataGridViewTextBoxColumn.Name = "DateDataGridViewTextBoxColumn"
-        '
         'Cost
         '
         Me.Cost.DataPropertyName = "Cost"
@@ -273,16 +196,6 @@ Partial Class Monitoring
         Me.Cost.DefaultCellStyle = DataGridViewCellStyle5
         Me.Cost.HeaderText = "Cost"
         Me.Cost.Name = "Cost"
-        '
-        'SignedOutCuttersBindingSource
-        '
-        Me.SignedOutCuttersBindingSource.DataMember = "SignedOutCutters"
-        Me.SignedOutCuttersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
-        '
-        'Tool_Cutter_DatabaseDataSet
-        '
-        Me.Tool_Cutter_DatabaseDataSet.DataSetName = "Tool_Cutter_DatabaseDataSet"
-        Me.Tool_Cutter_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'gbUsers
         '
@@ -310,29 +223,6 @@ Partial Class Monitoring
         Me.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvUsers.Size = New System.Drawing.Size(528, 180)
         Me.dgvUsers.TabIndex = 0
-        '
-        'UsernameDataGridViewTextBoxColumn
-        '
-        Me.UsernameDataGridViewTextBoxColumn.DataPropertyName = "Username"
-        Me.UsernameDataGridViewTextBoxColumn.HeaderText = "Username"
-        Me.UsernameDataGridViewTextBoxColumn.Name = "UsernameDataGridViewTextBoxColumn"
-        '
-        'StatusDataGridViewTextBoxColumn
-        '
-        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
-        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
-        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
-        '
-        'InterfaceDataGridViewTextBoxColumn
-        '
-        Me.InterfaceDataGridViewTextBoxColumn.DataPropertyName = "Interface"
-        Me.InterfaceDataGridViewTextBoxColumn.HeaderText = "Interface"
-        Me.InterfaceDataGridViewTextBoxColumn.Name = "InterfaceDataGridViewTextBoxColumn"
-        '
-        'UsersBindingSource
-        '
-        Me.UsersBindingSource.DataMember = "Users"
-        Me.UsersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
         '
         'gbOrders
         '
@@ -370,41 +260,6 @@ Partial Class Monitoring
         Me.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.dgvOrders.Size = New System.Drawing.Size(528, 538)
         Me.dgvOrders.TabIndex = 0
-        '
-        'QtyToMakeDataGridViewTextBoxColumn
-        '
-        Me.QtyToMakeDataGridViewTextBoxColumn.DataPropertyName = "QtyToMake"
-        Me.QtyToMakeDataGridViewTextBoxColumn.HeaderText = "QtyToMake"
-        Me.QtyToMakeDataGridViewTextBoxColumn.Name = "QtyToMakeDataGridViewTextBoxColumn"
-        '
-        'ToolNameDataGridViewTextBoxColumn
-        '
-        Me.ToolNameDataGridViewTextBoxColumn.DataPropertyName = "Tool Name"
-        Me.ToolNameDataGridViewTextBoxColumn.HeaderText = "Tool Name"
-        Me.ToolNameDataGridViewTextBoxColumn.Name = "ToolNameDataGridViewTextBoxColumn"
-        '
-        'DateSubmittedDataGridViewTextBoxColumn
-        '
-        Me.DateSubmittedDataGridViewTextBoxColumn.DataPropertyName = "Date Submitted"
-        Me.DateSubmittedDataGridViewTextBoxColumn.HeaderText = "Date Submitted"
-        Me.DateSubmittedDataGridViewTextBoxColumn.Name = "DateSubmittedDataGridViewTextBoxColumn"
-        '
-        'ApprovalDataGridViewTextBoxColumn
-        '
-        Me.ApprovalDataGridViewTextBoxColumn.DataPropertyName = "Approval"
-        Me.ApprovalDataGridViewTextBoxColumn.HeaderText = "Approval"
-        Me.ApprovalDataGridViewTextBoxColumn.Name = "ApprovalDataGridViewTextBoxColumn"
-        '
-        'DateMadeDataGridViewTextBoxColumn
-        '
-        Me.DateMadeDataGridViewTextBoxColumn.DataPropertyName = "Date Made"
-        Me.DateMadeDataGridViewTextBoxColumn.HeaderText = "Date Made"
-        Me.DateMadeDataGridViewTextBoxColumn.Name = "DateMadeDataGridViewTextBoxColumn"
-        '
-        'CutterOrdersBindingSource
-        '
-        Me.CutterOrdersBindingSource.DataMember = "CutterOrders"
-        Me.CutterOrdersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
         '
         'tmrRefresh
         '
@@ -453,22 +308,6 @@ Partial Class Monitoring
         Me.BTNDevOptions.Text = "Developer Options"
         Me.BTNDevOptions.UseVisualStyleBackColor = True
         '
-        'ToolRoomInventoryTableAdapter
-        '
-        Me.ToolRoomInventoryTableAdapter.ClearBeforeFill = True
-        '
-        'UsersTableAdapter
-        '
-        Me.UsersTableAdapter.ClearBeforeFill = True
-        '
-        'CutterOrdersTableAdapter
-        '
-        Me.CutterOrdersTableAdapter.ClearBeforeFill = True
-        '
-        'SignedOutCuttersTableAdapter
-        '
-        Me.SignedOutCuttersTableAdapter.ClearBeforeFill = True
-        '
         'lblbInventoryValue
         '
         Me.lblbInventoryValue.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -496,11 +335,182 @@ Partial Class Monitoring
         Me.lblSignedOutValue.Text = "Current Signed Out Tool Value: $"
         Me.lblSignedOutValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'PBRefresh
+        '
+        Me.PBRefresh.Location = New System.Drawing.Point(1130, 791)
+        Me.PBRefresh.Name = "PBRefresh"
+        Me.PBRefresh.Size = New System.Drawing.Size(204, 23)
+        Me.PBRefresh.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.PBRefresh.TabIndex = 9
+        '
+        'QtyToMakeDataGridViewTextBoxColumn
+        '
+        Me.QtyToMakeDataGridViewTextBoxColumn.DataPropertyName = "QtyToMake"
+        Me.QtyToMakeDataGridViewTextBoxColumn.HeaderText = "QtyToMake"
+        Me.QtyToMakeDataGridViewTextBoxColumn.Name = "QtyToMakeDataGridViewTextBoxColumn"
+        '
+        'ToolNameDataGridViewTextBoxColumn
+        '
+        Me.ToolNameDataGridViewTextBoxColumn.DataPropertyName = "Tool Name"
+        Me.ToolNameDataGridViewTextBoxColumn.HeaderText = "Tool Name"
+        Me.ToolNameDataGridViewTextBoxColumn.Name = "ToolNameDataGridViewTextBoxColumn"
+        '
+        'DateSubmittedDataGridViewTextBoxColumn
+        '
+        Me.DateSubmittedDataGridViewTextBoxColumn.DataPropertyName = "Date Submitted"
+        Me.DateSubmittedDataGridViewTextBoxColumn.HeaderText = "Date Submitted"
+        Me.DateSubmittedDataGridViewTextBoxColumn.Name = "DateSubmittedDataGridViewTextBoxColumn"
+        '
+        'ApprovalDataGridViewTextBoxColumn
+        '
+        Me.ApprovalDataGridViewTextBoxColumn.DataPropertyName = "Approval"
+        Me.ApprovalDataGridViewTextBoxColumn.HeaderText = "Approval"
+        Me.ApprovalDataGridViewTextBoxColumn.Name = "ApprovalDataGridViewTextBoxColumn"
+        '
+        'DateMadeDataGridViewTextBoxColumn
+        '
+        Me.DateMadeDataGridViewTextBoxColumn.DataPropertyName = "Date Made"
+        Me.DateMadeDataGridViewTextBoxColumn.HeaderText = "Date Made"
+        Me.DateMadeDataGridViewTextBoxColumn.Name = "DateMadeDataGridViewTextBoxColumn"
+        '
+        'CutterOrdersBindingSource
+        '
+        Me.CutterOrdersBindingSource.DataMember = "CutterOrders"
+        Me.CutterOrdersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
+        '
+        'Tool_Cutter_DatabaseDataSet
+        '
+        Me.Tool_Cutter_DatabaseDataSet.DataSetName = "Tool_Cutter_DatabaseDataSet"
+        Me.Tool_Cutter_DatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'UsernameDataGridViewTextBoxColumn
+        '
+        Me.UsernameDataGridViewTextBoxColumn.DataPropertyName = "Username"
+        Me.UsernameDataGridViewTextBoxColumn.HeaderText = "Username"
+        Me.UsernameDataGridViewTextBoxColumn.Name = "UsernameDataGridViewTextBoxColumn"
+        '
+        'StatusDataGridViewTextBoxColumn
+        '
+        Me.StatusDataGridViewTextBoxColumn.DataPropertyName = "Status"
+        Me.StatusDataGridViewTextBoxColumn.HeaderText = "Status"
+        Me.StatusDataGridViewTextBoxColumn.Name = "StatusDataGridViewTextBoxColumn"
+        '
+        'InterfaceDataGridViewTextBoxColumn
+        '
+        Me.InterfaceDataGridViewTextBoxColumn.DataPropertyName = "Interface"
+        Me.InterfaceDataGridViewTextBoxColumn.HeaderText = "Interface"
+        Me.InterfaceDataGridViewTextBoxColumn.Name = "InterfaceDataGridViewTextBoxColumn"
+        '
+        'UsersBindingSource
+        '
+        Me.UsersBindingSource.DataMember = "Users"
+        Me.UsersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
+        '
+        'QuantityDataGridViewTextBoxColumn1
+        '
+        Me.QuantityDataGridViewTextBoxColumn1.DataPropertyName = "Quantity"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.QuantityDataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle4
+        Me.QuantityDataGridViewTextBoxColumn1.HeaderText = "Quantity"
+        Me.QuantityDataGridViewTextBoxColumn1.Name = "QuantityDataGridViewTextBoxColumn1"
+        '
+        'ToolDataGridViewTextBoxColumn1
+        '
+        Me.ToolDataGridViewTextBoxColumn1.DataPropertyName = "Tool"
+        Me.ToolDataGridViewTextBoxColumn1.HeaderText = "Tool"
+        Me.ToolDataGridViewTextBoxColumn1.Name = "ToolDataGridViewTextBoxColumn1"
+        '
+        'ShopOrderDataGridViewTextBoxColumn
+        '
+        Me.ShopOrderDataGridViewTextBoxColumn.DataPropertyName = "ShopOrder"
+        Me.ShopOrderDataGridViewTextBoxColumn.HeaderText = "ShopOrder"
+        Me.ShopOrderDataGridViewTextBoxColumn.Name = "ShopOrderDataGridViewTextBoxColumn"
+        '
+        'DepartmentDataGridViewTextBoxColumn
+        '
+        Me.DepartmentDataGridViewTextBoxColumn.DataPropertyName = "Department"
+        Me.DepartmentDataGridViewTextBoxColumn.HeaderText = "Department"
+        Me.DepartmentDataGridViewTextBoxColumn.Name = "DepartmentDataGridViewTextBoxColumn"
+        '
+        'DateDataGridViewTextBoxColumn
+        '
+        Me.DateDataGridViewTextBoxColumn.DataPropertyName = "Date"
+        Me.DateDataGridViewTextBoxColumn.HeaderText = "Date"
+        Me.DateDataGridViewTextBoxColumn.Name = "DateDataGridViewTextBoxColumn"
+        '
+        'SignedOutCuttersBindingSource
+        '
+        Me.SignedOutCuttersBindingSource.DataMember = "SignedOutCutters"
+        Me.SignedOutCuttersBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet
+        '
+        'QuantityDataGridViewTextBoxColumn
+        '
+        Me.QuantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity"
+        Me.QuantityDataGridViewTextBoxColumn.HeaderText = "Quantity"
+        Me.QuantityDataGridViewTextBoxColumn.Name = "QuantityDataGridViewTextBoxColumn"
+        '
+        'ToolDataGridViewTextBoxColumn
+        '
+        Me.ToolDataGridViewTextBoxColumn.DataPropertyName = "Tool"
+        Me.ToolDataGridViewTextBoxColumn.HeaderText = "Tool"
+        Me.ToolDataGridViewTextBoxColumn.Name = "ToolDataGridViewTextBoxColumn"
+        '
+        'MaxBinSizeDataGridViewTextBoxColumn
+        '
+        Me.MaxBinSizeDataGridViewTextBoxColumn.DataPropertyName = "Max Bin Size"
+        Me.MaxBinSizeDataGridViewTextBoxColumn.HeaderText = "Max Bin Size"
+        Me.MaxBinSizeDataGridViewTextBoxColumn.Name = "MaxBinSizeDataGridViewTextBoxColumn"
+        '
+        'MinBinSizeDataGridViewTextBoxColumn
+        '
+        Me.MinBinSizeDataGridViewTextBoxColumn.DataPropertyName = "Min Bin Size"
+        Me.MinBinSizeDataGridViewTextBoxColumn.HeaderText = "Min Bin Size"
+        Me.MinBinSizeDataGridViewTextBoxColumn.Name = "MinBinSizeDataGridViewTextBoxColumn"
+        '
+        'OrderPlacedDataGridViewTextBoxColumn
+        '
+        Me.OrderPlacedDataGridViewTextBoxColumn.DataPropertyName = "Order Placed"
+        Me.OrderPlacedDataGridViewTextBoxColumn.HeaderText = "Order Placed"
+        Me.OrderPlacedDataGridViewTextBoxColumn.Name = "OrderPlacedDataGridViewTextBoxColumn"
+        '
+        'DateUpdatedDataGridViewTextBoxColumn
+        '
+        Me.DateUpdatedDataGridViewTextBoxColumn.DataPropertyName = "Date Updated"
+        Me.DateUpdatedDataGridViewTextBoxColumn.HeaderText = "Date Updated"
+        Me.DateUpdatedDataGridViewTextBoxColumn.Name = "DateUpdatedDataGridViewTextBoxColumn"
+        '
+        'ToolRoomInventoryBindingSource
+        '
+        Me.ToolRoomInventoryBindingSource.DataMember = "ToolRoomInventory"
+        Me.ToolRoomInventoryBindingSource.DataSource = Me.Tool_Cutter_DatabaseDataSet1
+        '
+        'Tool_Cutter_DatabaseDataSet1
+        '
+        Me.Tool_Cutter_DatabaseDataSet1.DataSetName = "Tool_Cutter_DatabaseDataSet"
+        Me.Tool_Cutter_DatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'ToolRoomInventoryTableAdapter
+        '
+        Me.ToolRoomInventoryTableAdapter.ClearBeforeFill = True
+        '
+        'UsersTableAdapter
+        '
+        Me.UsersTableAdapter.ClearBeforeFill = True
+        '
+        'CutterOrdersTableAdapter
+        '
+        Me.CutterOrdersTableAdapter.ClearBeforeFill = True
+        '
+        'SignedOutCuttersTableAdapter
+        '
+        Me.SignedOutCuttersTableAdapter.ClearBeforeFill = True
+        '
         'Monitoring
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1482, 823)
+        Me.Controls.Add(Me.PBRefresh)
         Me.Controls.Add(Me.lblSignedOutValue)
         Me.Controls.Add(Me.lblbInventoryValue)
         Me.Controls.Add(Me.BTNDevOptions)
@@ -520,18 +530,18 @@ Partial Class Monitoring
         Me.Text = "Monitoring"
         Me.gbInventory.ResumeLayout(False)
         CType(Me.dgvInventory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBSignedOut.ResumeLayout(False)
         CType(Me.dgvSignedOut, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbUsers.ResumeLayout(False)
         CType(Me.dgvUsers, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.UsersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gbOrders.ResumeLayout(False)
         CType(Me.dgvOrders, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CutterOrdersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.UsersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -584,4 +594,5 @@ Partial Class Monitoring
     Friend WithEvents Cost As DataGridViewTextBoxColumn
     Friend WithEvents lblbInventoryValue As Label
     Friend WithEvents lblSignedOutValue As Label
+    Friend WithEvents PBRefresh As ProgressBar
 End Class

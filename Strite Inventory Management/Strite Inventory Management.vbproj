@@ -111,6 +111,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="DevOptions.Designer.vb">
       <DependentUpon>DevOptions.vb</DependentUpon>
     </Compile>
