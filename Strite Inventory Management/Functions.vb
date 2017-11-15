@@ -117,7 +117,7 @@ Public Module Functions
 
         'Count the number of results in the datatable. There should be only 1 result as each computer has a different name. If there is a result the user is registered.
         If Dtable.Rows.Count = 0 Then
-            MsgBox("User '" & Environment.UserName & "' is not registered. Speak to the administrator of the software to register your username. The program will now terminate.", MsgBoxStyle.Critical, "Error")
+            MsgBox("User '" & Environment.UserName & "' is not registered. Speak to the administrator of the software to register your username (ext. 344). The program will now terminate.", MsgBoxStyle.Critical, "Error")
             StriteInventoryManagement.Close()
         End If
         dbconn.Close()
@@ -193,10 +193,11 @@ Public Module Functions
                 Dim INVCost As String = "!!NSD!!"
                 Dim nosizeflag As Boolean = False
 
-
+                'extract the size from the toolname identifier (always the first term)
                 Dim toolsplit() As String = Split(ToolName, " ")
                 Dim size As String = toolsplit(0)
 
+                'compare sizes to known sizes with pricing data to obtain a total material + coating cost for 1 part (cost will be multiplied later by quantity for full cost)
                 Select Case size
                     Case "1/8"
                         TCost = My.Settings.oneeighth + My.Settings.Toneeighth
@@ -490,10 +491,11 @@ Public Module Functions
             Dim Approval As String = "Awaiting Submittal"
             Dim TCost As Decimal
 
-
+            'extract the size data from the toolname identifier (always the first term)
             Dim toolsplit() As String = Split(ToolName, " ")
             Dim size As String = toolsplit(0)
 
+            'compare sizes to known sizes with pricing data to obtain a total material + coating cost for 1 part (cost will be multiplied later by quantity for full cost)
             Select Case size
                 Case "1/8"
                     TCost = My.Settings.oneeighth + My.Settings.Toneeighth

@@ -28,31 +28,41 @@ Public Class Monitoring
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet.SignedOutCutters' table. You can move, or remove it, as needed.
         SignedOutCuttersTableAdapter.Fill(Tool_Cutter_DatabaseDataSet.SignedOutCutters)
 
-
+        'Adding items to be used as search parameters to the search combo box
         CBSearch.Items.Add("All")
         CBSearch.Items.Add("Inventory")
         CBSearch.Items.Add("Orders")
         CBSearch.Items.Add("Signed Out Cutters")
         CBSearch.Text = "All"
+        'starts the refresh timer which handles refreshing the datagridviews
         tmrRefresh.Start()
+        'initializes the cost information labels which display the current inventory and signed out tool costs
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
+        'flashcount initialized to 0. this variable is used when flashing the inventory value label after an item is added or removed from the inventory
         flashcount = 0
+        'set the refresh timer interval from the settings. this interval is controlled through the devoptions.vb form during runtime.
         tmrRefresh.Interval = My.Settings.TInterval
+        'set the refresh progressbar max value to the same as the timer interval
         PBRefresh.Maximum = tmrRefresh.Interval
-        PBRefresh.ForeColor = Color.Red
+
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
+        'set the refresh progressbar to its minimum value (0)
         PBRefresh.Value = PBRefresh.Minimum
         'DGVUpdate(dgvInventory)
         'refresh user datagridview each timer cycle
         DGVRefresh("Users", dgvUsers)
 
+        'these variables are used to save the current position of the selected cell in each datagridview. after the refresh is complete the positions of these cells will be restored as to not disrupt the user
         usercellsignedout = dgvSignedOut.CurrentCellAddress
         usercellorders = dgvOrders.CurrentCellAddress
         usercellinventory = dgvInventory.CurrentCellAddress
-        PBRefresh.Value = PBRefresh.Value * 0.25
+
+        'set the progressbar value to 25% of its max
+        PBRefresh.Value = PBRefresh.Maximum * 0.25
+
         'refresh the inventory datagridview only if the inventory table record count is different than the datagridview row count
         If (ToolRoomInventoryTableAdapter.CountRecords <> dgvInventory.RowCount) Or (UpdateRequired = True) Then
             ToolRoomInventoryTableAdapter.Fill(Tool_Cutter_DatabaseDataSet1.ToolRoomInventory)
@@ -81,7 +91,8 @@ Public Class Monitoring
                 'MsgBox(Convert.ToString(ex),vbcritical)
             End Try
         End If
-        PBRefresh.Value = PBRefresh.Value * 0.5
+        'set the progressbar value to 50% of its maximum
+        PBRefresh.Value = PBRefresh.Maximum * 0.5
         'if the datagridview (Inventory) rows does not equal zero then set the current cell to the cell saved earlier before the update. This maintains the position of the selected cell after the update.
         If dgvInventory.Rows.Count <> 0 Then
             Try
@@ -94,11 +105,13 @@ Public Class Monitoring
         'Update is complete so set the updaterequired flag to false
         UpdateRequired = False
 
+        'checks to see if the toolroom value has increased. if it has then it changes the font of the inventory label to green and queues up flashcount with 3 flashes
         If ToolRoomInventoryTableAdapter.ToolRoomValue.ToString > My.Settings.InventoryVal Then
             lblbInventoryValue.ForeColor = Color.Green
             FG = True
             FR = False
             flashcount = 3
+            'checks to see if the toolroom value has decreased. if it has then it changes the font of the inventory label to red and queues up flashcount with 3 flashes
         ElseIf ToolRoomInventoryTableAdapter.ToolRoomValue.ToString < My.Settings.InventoryVal Then
             lblbInventoryValue.ForeColor = Color.Red
             FR = True
@@ -112,43 +125,59 @@ Public Class Monitoring
             'flashcount = 0
         End If
 
+        'updates both the inventory and signed out tool labels with current values
         My.Settings.InventoryVal = ToolRoomInventoryTableAdapter.ToolRoomValue.ToString
         lblbInventoryValue.Text = "Current Tool Inventory Value: $" & My.Settings.InventoryVal
         My.Settings.SignedOutVal = SignedOutCuttersTableAdapter.SignedOutToolValue.ToString
         lblSignedOutValue.Text = "Current Signed Out Tool Value: $" & My.Settings.SignedOutVal
-        PBRefresh.Value = PBRefresh.Value * 0.75
+        'set the progressbar value to 75% of its maximum
+        PBRefresh.Value = PBRefresh.Maximum * 0.75
+        'checks to see if flashcount is larger than 0
         If flashcount > 0 Then
+            'if the FG flag is true then initiate the green flash sequence
             If FG = True Then
+                'toggles the label between green and transparent and green and black
                 If lblbInventoryValue.BackColor = Color.Transparent Then
                     lblbInventoryValue.BackColor = Color.Green
                     lblbInventoryValue.ForeColor = Color.Black
+                    'take away one from flashcount
                     flashcount -= 1
                 ElseIf lblbInventoryValue.BackColor = Color.Green Then
                     lblbInventoryValue.BackColor = Color.Transparent
                     lblbInventoryValue.ForeColor = Color.Green
                 End If
+                'if the FR flag is true then initiate the red flash sequence
             ElseIf FR = True Then
+                'toggles the label between red and transparent and red and black
                 If lblbInventoryValue.BackColor = Color.Transparent Then
                     lblbInventoryValue.BackColor = Color.Red
                     lblbInventoryValue.ForeColor = Color.Black
+                    'take away one from flashcount
                     flashcount -= 1
                 ElseIf lblbInventoryValue.BackColor = Color.Red Then
                     lblbInventoryValue.BackColor = Color.Transparent
                     lblbInventoryValue.ForeColor = Color.Red
                 End If
             End If
+            'checks if flashcount is 0 meaning that the sequence is over
         Else
+            'if the FG flag is true then set the inventory label font to green
             If FG = True Then
                 lblbInventoryValue.ForeColor = Color.Green
+                'if the FR flag is true then set the inventory label font to red
             ElseIf FR = True Then
                 lblbInventoryValue.ForeColor = Color.Red
             End If
+            'set both FG and FR to false effectively resetting the sequence
             FG = False
             FR = False
             'lblbInventoryValue.ForeColor = Color.Black
+            'set the background of the label to transparent as the sequence is over
             lblbInventoryValue.BackColor = Color.Transparent
+            'make sure flashcount is 0
             flashcount = 0
         End If
+        'set the value of the progressbar to its maximum
         PBRefresh.Value = PBRefresh.Maximum
     End Sub
 
@@ -369,6 +398,7 @@ Public Class Monitoring
     End Sub
 
     Private Sub BTNDevOptions_Click(sender As Object, e As EventArgs) Handles BTNDevOptions.Click
+        'warn the user that the options on the next form are critical and not to be tampered with unless they know what they are. this form is only accessible by the developer and admins
         MsgBox("Do not modify the following settings unless you absolutely know what you are doing!", vbExclamation, "Warning!")
         DevOptions.Show()
     End Sub

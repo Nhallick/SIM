@@ -1,5 +1,6 @@
 ﻿Public Class DevOptions
     Private Sub BTNCostHelp_Click(sender As Object, e As EventArgs) Handles BTNCostHelp.Click, BTNCostTHelp.Click
+        'help information for the material/coating based cost section
         MsgBox("This section is used to modify the pricing for each family of tools, grouped by size. Pricing is based off of (average cost for blanks) + (average cost for coating) for each size.", vbInformation, "Help")
     End Sub
 
@@ -29,7 +30,7 @@
         TBTfiveeighths.Text = My.Settings.Tfiveeighths
         TBTthreefourths.Text = My.Settings.Tthreefourths
         '***************************************************************************************
-
+        'set the text value of the tbrefresh text box to the value in settings for interval
         tbrefresh.Text = My.Settings.TInterval.ToString
 
     End Sub
@@ -63,8 +64,9 @@
         '***********************************
 
 
-
+        'loop through each item in the tbarr array
         For Each item In tbarr
+            'if the value is not numeric then send a message box
             If Not IsNumeric(item.Text) Then
                 MsgBox("All text boxes must be filled out containing a decimal value for cost.", vbCritical, "Error")
                 Exit Sub
@@ -96,18 +98,28 @@
         My.Settings.Tthreefourths = TBTthreefourths.Text
         '*********************************************************************************************
 
-        If tbrefresh.Text < 0 Then
-            MsgBox("Refresh interval cannot be less than 0.", vbCritical, "Error")
+        If IsNumeric(tbrefresh.Text) Then
+            'if the value in the tbrefresh text box is less than 0 then inform the user it cannot be less than 0
+            If tbrefresh.Text < 0 Then
+                MsgBox("Refresh interval cannot be less than 0.", vbCritical, "Error")
+                'if the value is greater than 0 put that value in the interval container in settings
+            Else
+                My.Settings.TInterval = Convert.ToInt16(tbrefresh.Text)
+                Monitoring.tmrRefresh.Interval = My.Settings.TInterval
+            End If
         Else
-            My.Settings.TInterval = Convert.ToInt16(tbrefresh.Text)
-            Monitoring.tmrRefresh.Interval = My.Settings.TInterval
+            MsgBox("Refresh interval must be numeric.", vbCritical, "Error")
         End If
+
+        'save the settings
         My.Settings.Save()
 
+        'confirmation of settings change
         MsgBox("Material Pricing (Blanks and Coatings) and monitor form refresh have been updated", vbInformation, "Update")
     End Sub
 
     Private Sub BTNCostTHelp_Click(sender As Object, e As EventArgs) Handles BTNCostTHelp.DoubleClick
+        'help information for the time based cost section
         MsgBox("This section is used to modify the pricing for each family of tools, grouped by size. Pricing is based off of time spent machining for each size.", vbInformation, "Help")
     End Sub
 
