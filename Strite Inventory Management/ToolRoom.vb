@@ -72,12 +72,12 @@ Public Class ToolRoom
                     Try
                         dbconn.Open()
                     Catch ex As Exception
-                        'MsgBox(Convert.ToString(ex),vbcritical)
+                        'MsgBox(Convert.ToString(ex),vbcritical,"Error")
                     End Try
                     Try
                         Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-                        'MsgBox(Convert.ToString(ex),vbcritical)
+                        'MsgBox(Convert.ToString(ex),vbcritical,"Error")
                     End Try
                     Dadapter = New OleDbDataAdapter(str, dbconn)
                     Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -88,7 +88,7 @@ Public Class ToolRoom
                     Try
                         Dadapter.Fill(Dtable)
                     Catch ex As Exception
-                        ' MsgBox(Convert.ToString(ex),vbcritical)
+                        ' MsgBox(Convert.ToString(ex),vbcritical,"Error")
                     End Try
 
                     'update inventory listing to show there is an order currently placed
@@ -102,12 +102,12 @@ Public Class ToolRoom
                     Try
                         dbconn.Open()
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex), vbCritical)
+                        MsgBox(Convert.ToString(ex), vbCritical, "Error")
                     End Try
                     Try
                         Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-                        'MsgBox(Convert.ToString(ex),vbcritical)
+                        'MsgBox(Convert.ToString(ex),vbcritical,"Error")
                     End Try
                     Dadapter = New OleDbDataAdapter(update, dbconn)
                     Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -117,7 +117,7 @@ Public Class ToolRoom
                     Try
                         Dadapter.Fill(Dtable)
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex), vbCritical)
+                        MsgBox(Convert.ToString(ex), vbCritical, "Error")
                     End Try
                     dbconn.Close()
                 End If
@@ -173,7 +173,7 @@ Public Class ToolRoom
             Try
                 DGVSubOrders.CurrentCell = DGVSubOrders.Rows(usercellorders.Y).Cells(usercellorders.X)
             Catch ex As Exception
-                'MsgBox(Convert.ToString(ex),vbcritical)
+                'MsgBox(Convert.ToString(ex),vbcritical,"Error")
             End Try
 
         End If
