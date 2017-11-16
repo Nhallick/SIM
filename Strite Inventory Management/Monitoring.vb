@@ -88,7 +88,7 @@ Public Class Monitoring
             Try
                 dgvOrders.CurrentCell = dgvOrders.Rows(usercellorders.Y).Cells(usercellorders.X)
             Catch ex As Exception
-                'MsgBox(Convert.ToString(ex),vbcritical)
+                'MsgBox(Convert.ToString(ex),vbcritical,"Error")
             End Try
         End If
         'set the progressbar value to 50% of its maximum
@@ -98,7 +98,7 @@ Public Class Monitoring
             Try
                 dgvInventory.CurrentCell = dgvInventory.Rows(usercellinventory.Y).Cells(usercellinventory.X)
             Catch ex As Exception
-                'MsgBox(Convert.ToString(ex),vbcritical)
+                'MsgBox(Convert.ToString(ex),vbcritical,"Error")
             End Try
         End If
 

@@ -82,7 +82,7 @@ Public Class ToolCutter
             'set the autocompletesource to the tools array
             tbSearch.AutoCompleteCustomSource = Tools
         Catch ex As Exception
-            'MsgBox(Convert.ToString(ex), vbCritical)
+            'MsgBox(Convert.ToString(ex), vbCritical,"Error")
         End Try
 
     End Sub

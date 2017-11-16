@@ -26,14 +26,14 @@ Public Module Functions
         Try
             dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
         'use try catch statement to add a table (dt) to the dataset (ds) in order to store values
         Try
             Dset.Tables.Add(Dtable)
         Catch ex As Exception
-            ' MsgBox(Convert.ToString(ex), vbCritical)
+            ' MsgBox(Convert.ToString(ex), vbCritical,"Error")
         End Try
 
         'create new dataadapter object using the sql string from above and the connection created above
@@ -49,7 +49,7 @@ Public Module Functions
         Try
             Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
         'set the datasource of the datagridview to the datatable
@@ -68,12 +68,12 @@ Public Module Functions
         Try
             dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
         Try
             Dset.Tables.Add(Dtable)
         Catch ex As Exception
-            'MsgBox(Convert.ToString(ex), vbCritical)
+            'MsgBox(Convert.ToString(ex), vbCritical,"Error")
         End Try
         Dadapter = New OleDbDataAdapter(str, dbconn)
         Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -96,12 +96,12 @@ Public Module Functions
         Try
             dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
         Try
             Dset.Tables.Add(Dtable)
         Catch ex As Exception
-            '  MsgBox(Convert.ToString(ex), vbCritical)
+            '  MsgBox(Convert.ToString(ex), vbCritical,"Error")
         End Try
         Dadapter = New OleDbDataAdapter(str, dbconn)
         Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -112,7 +112,7 @@ Public Module Functions
         Try
             Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
         'Count the number of results in the datatable. There should be only 1 result as each computer has a different name. If there is a result the user is registered.
@@ -150,12 +150,12 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-                    'MsgBox(Convert.ToString(ex),vbcritical)
+                    'MsgBox(Convert.ToString(ex),vbcritical,"Error")
                 End Try
                 Dadapter = New OleDbDataAdapter(Str, dbconn)
                 Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -165,7 +165,7 @@ Public Module Functions
                 Try
                     Dadapter.Fill(Dtable)
                 Catch ex As Exception
-                    ' MsgBox(Convert.ToString(ex),vbcritical)
+                    ' MsgBox(Convert.ToString(ex),vbcritical,"Error")
                 End Try
                 dbconn.Close()
             Else
@@ -270,12 +270,12 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    ' MsgBox(Convert.ToString(ex))
+                    ' MsgBox(Convert.ToString(ex),vbcritical,"Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-                    'MsgBox(Convert.ToString(ex))
+                    'MsgBox(Convert.ToString(ex),vbcritical,"Error")
                 End Try
                 Dadapter = New OleDbDataAdapter(Str, dbconn)
                 Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -283,7 +283,7 @@ Public Module Functions
                     .QuoteSuffix = "]"
                 }
                 Dadapter.Fill(Dtable)
-                'MsgBox(Str)
+                'MsgBox(Str,vbinformation,"SQL")
                 dbconn.Close()
                 '-------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -374,7 +374,7 @@ Public Module Functions
                 dbconn.Close()
             End If
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
     End Sub
@@ -420,7 +420,7 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
@@ -436,7 +436,7 @@ Public Module Functions
                 Try
                     Dadapter.Fill(Dtable)
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 dbconn.Close()
             Else
@@ -444,7 +444,7 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
@@ -459,7 +459,7 @@ Public Module Functions
                 Try
                     Dadapter.Fill(Dtable)
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 dbconn.Close()
             End If
@@ -574,12 +574,12 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-                    ' MsgBox(Convert.ToString(ex), vbCritical)
+                    ' MsgBox(Convert.ToString(ex), vbCritical,"Error")
                 End Try
                 Dadapter = New OleDbDataAdapter(Str, dbconn)
                 Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -600,12 +600,12 @@ Public Module Functions
                     Try
                         dbconn.Open()
                     Catch ex As Exception
-                        MsgBox(Convert.ToString(ex), vbCritical)
+                        MsgBox(Convert.ToString(ex), vbCritical, "Error")
                     End Try
                     Try
                         Dset.Tables.Add(Dtable)
                     Catch ex As Exception
-                        'MsgBox(Convert.ToString(ex), vbCritical)
+                        'MsgBox(Convert.ToString(ex), vbCritical,"Error")
                     End Try
                     Dadapter = New OleDbDataAdapter(Str3, dbconn)
                     cb = New OleDbCommandBuilder(Dadapter) With {
@@ -723,12 +723,12 @@ Public Module Functions
                 Try
                     dbconn.Open()
                 Catch ex As Exception
-                    MsgBox(Convert.ToString(ex), vbCritical)
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 Try
                     Dset.Tables.Add(Dtable)
                 Catch ex As Exception
-                    'MsgBox(Convert.ToString(ex), vbCritical)
+                    'MsgBox(Convert.ToString(ex), vbCritical,"Error")
                 End Try
                 Dadapter = New OleDbDataAdapter(Str, dbconn)
                 Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -789,13 +789,13 @@ Public Module Functions
         Try
             dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
         Try
             Dset.Tables.Add(Dtable)
             Dtable.Clear()
         Catch ex As Exception
-            ' MsgBox(Convert.ToString(ex),vbcritical)
+            ' MsgBox(Convert.ToString(ex),vbcritical,"Error")
         End Try
         Dadapter = New OleDbDataAdapter(str, dbconn)
         Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -806,7 +806,7 @@ Public Module Functions
         Try
             Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
         'run through each item in the data grid view using a for loop
@@ -833,12 +833,12 @@ Public Module Functions
         Try
             dbconn.Open()
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
         Try
             Dset.Tables.Add(Dtable)
         Catch ex As Exception
-            ' MsgBox(Convert.ToString(ex),vbcritical)
+            ' MsgBox(Convert.ToString(ex),vbcritical,"Error")
         End Try
         Dadapter = New OleDbDataAdapter(str, dbconn)
         Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -849,7 +849,7 @@ Public Module Functions
         Try
             Dadapter.Fill(Dtable)
         Catch ex As Exception
-            MsgBox(Convert.ToString(ex), vbCritical)
+            MsgBox(Convert.ToString(ex), vbCritical, "Error")
         End Try
 
         'Count the number of results in the datatable. There should be only 1 result as each computer has a different name. If there is a result the user is registered.
@@ -901,12 +901,12 @@ Public Module Functions
             Try
                 dbconn.Open()
             Catch ex As Exception
-                MsgBox(Convert.ToString(ex), vbCritical)
+                MsgBox(Convert.ToString(ex), vbCritical, "Error")
             End Try
             Try
                 Dset.Tables.Add(Dtable)
             Catch ex As Exception
-                ' MsgBox(Convert.ToString(ex), vbCritical)
+                ' MsgBox(Convert.ToString(ex), vbCritical,"Error")
             End Try
             Dadapter = New OleDbDataAdapter(str, dbconn)
             Dim cb = New OleDbCommandBuilder(Dadapter) With {
@@ -917,7 +917,7 @@ Public Module Functions
             Try
                 Dadapter.Fill(Dtable)
             Catch ex As Exception
-                MsgBox(Convert.ToString(ex), vbCritical)
+                MsgBox(Convert.ToString(ex), vbCritical, "Error")
             End Try
             dbconn.Close()
         Else
