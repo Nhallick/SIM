@@ -45,6 +45,7 @@ Public Class Monitoring
         tmrRefresh.Interval = My.Settings.TInterval
         'set the refresh progressbar max value to the same as the timer interval
         PBRefresh.Maximum = tmrRefresh.Interval
+        TmrRefresh_Tick(tmrRefresh, New EventArgs())
 
     End Sub
 
