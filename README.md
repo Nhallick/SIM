@@ -19,3 +19,8 @@ v1.2.3
 *Tuesday, November 14th 2017 11:26 AM*
 -Added progressbar for showing refresh progress and the ability to change the refresh interval on the monitor form
 ---------------------------------------------------------------------------------------------------------------------------
+v1.2.4
+*Tuesday, November 21st 2017 10:34 AM*
+-Fixed an issue where when tools were automatically ordered the quantity would be double or more of what they should be
+-(Issue seems to have been caused by allowing multiple people to be able to auto order at the same time while on the Tool Room window)
+-Issue has been fixed by allowing only one users account to automatically order parts while on the Tool Room window
