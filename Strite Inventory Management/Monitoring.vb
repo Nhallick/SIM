@@ -106,6 +106,7 @@ Public Class Monitoring
         'Update is complete so set the updaterequired flag to false
         UpdateRequired = False
 
+        '***********************************************************************************************************************************************************************************************************************************
         'checks to see if the toolroom value has increased. if it has then it changes the font of the inventory label to green and queues up flashcount with 3 flashes
         If ToolRoomInventoryTableAdapter.ToolRoomValue.ToString > My.Settings.InventoryVal Then
             lblbInventoryValue.ForeColor = Color.Green
@@ -178,6 +179,7 @@ Public Class Monitoring
             'make sure flashcount is 0
             flashcount = 0
         End If
+        '***********************************************************************************************************************************************************************************************************************************
         'set the value of the progressbar to its maximum
         PBRefresh.Value = PBRefresh.Maximum
     End Sub
