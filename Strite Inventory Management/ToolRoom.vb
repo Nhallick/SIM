@@ -98,8 +98,10 @@ Public Class ToolRoom
                         cb = New OleDbCommandBuilder(Dadapter)
                         Dadapter.Fill(Dtable)
                         dbconn.Close()
-                    ElseIf countresult = 1 Then
-                        Dim update As String = "UPDATE [CutterOrders] set [QtyToMake] = [QtyToMake] + '" & QtyToMake & "' WHERE ([Tool Name] = '" & toolname & "')"
+                    ElseIf countresult > 0 Then
+                        Dim dateupdated As String
+                        dateupdated = Date.Now.ToString("dd/MM/yyyy hh:mm:ss tt")
+                        Dim update As String = "UPDATE [CutterOrders] set [QtyToMake] ='" & QtyToMake & "' + [QtyToMake] ,[Date Submitted] = '" & dateupdated & "' WHERE ([Tool Name] = '" & toolname & "') AND ([Approval] = ""Awaiting Submittal"")"
                         Try
                             dbconn.Open()
                         Catch ex As Exception
@@ -120,6 +122,11 @@ Public Class ToolRoom
                         Catch ex As Exception
                             MsgBox(Convert.ToString(ex), vbCritical, "Error")
                         End Try
+                        Dim str2 As String = "UPDATE [ToolRoomInventory] set [Order Placed]= ""Y"" WHERE [Tool] = '" & toolname & "'"
+                        Dadapter = New OleDbDataAdapter(str2, dbconn)
+                        cb = New OleDbCommandBuilder(Dadapter)
+                        Dadapter.Fill(Dtable)
+                        dbconn.Close()
                         dbconn.Close()
                     End If
 

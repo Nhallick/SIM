@@ -595,7 +595,23 @@ Public Module Functions
                 Dadapter.Fill(Dtable)
                 dbconn.Close()
                 If dgv.SelectedRows(0).Cells(4).Value.ToString() = "Y" Then
-                    Dim Str3 As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToSignOut & ", '" & ToolName & "', '" & DateSubmitted & "', '" & Approval & "')"
+
+                    Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & ToolName & "') AND (Approval = ""Awaiting Submittal"")"
+                    Dim countresult As Integer
+                    Dim cb2 As New OleDbCommand(count, dbconn)
+                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    dbconn.Open()
+                    'use execute scalar command when using a COUNT command
+                    countresult = cb2.ExecuteScalar
+                    dbconn.Close()
+
+                    Dim str3 As String = ""
+                    If countresult = 0 Then
+                        str3 = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToSignOut & ", '" & ToolName & "', '" & DateSubmitted & "', '" & Approval & "')"
+                    ElseIf countresult > 0 Then
+                        str3 = "UPDATE [CutterOrders] set [QtyToMake] ='" & QtyToSignOut & "' + [QtyToMake] ,[Date Submitted] = '" & DateSubmitted & "' WHERE ([Tool Name] = '" & ToolName & "') AND ([Approval] = ""Awaiting Submittal"")"
+                    End If
+
                     dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                     Try
                         dbconn.Open()
