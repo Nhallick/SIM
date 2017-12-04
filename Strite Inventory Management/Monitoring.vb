@@ -46,6 +46,8 @@ Public Class Monitoring
         'set the refresh progressbar max value to the same as the timer interval
         PBRefresh.Maximum = tmrRefresh.Interval
         TmrRefresh_Tick(tmrRefresh, New EventArgs())
+        dgvInventory.Sort(dgvInventory.Columns(5), System.ComponentModel.ListSortDirection.Descending)
+        dgvSignedOut.Sort(dgvSignedOut.Columns(4), System.ComponentModel.ListSortDirection.Descending)
 
     End Sub
 
