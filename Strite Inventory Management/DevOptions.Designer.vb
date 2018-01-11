@@ -71,6 +71,8 @@ Partial Class DevOptions
         Me.BTNReset = New System.Windows.Forms.Button()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.tbrefresh = New System.Windows.Forms.TextBox()
+        Me.BTNUpdate = New System.Windows.Forms.Button()
+        Me.PBUpdate = New System.Windows.Forms.ProgressBar()
         Me.GBCosting.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -550,11 +552,29 @@ Partial Class DevOptions
         Me.tbrefresh.Size = New System.Drawing.Size(100, 20)
         Me.tbrefresh.TabIndex = 4
         '
+        'BTNUpdate
+        '
+        Me.BTNUpdate.Location = New System.Drawing.Point(272, 473)
+        Me.BTNUpdate.Name = "BTNUpdate"
+        Me.BTNUpdate.Size = New System.Drawing.Size(85, 23)
+        Me.BTNUpdate.TabIndex = 5
+        Me.BTNUpdate.Text = "Update Prices"
+        Me.BTNUpdate.UseVisualStyleBackColor = True
+        '
+        'PBUpdate
+        '
+        Me.PBUpdate.Location = New System.Drawing.Point(93, 504)
+        Me.PBUpdate.Name = "PBUpdate"
+        Me.PBUpdate.Size = New System.Drawing.Size(183, 23)
+        Me.PBUpdate.TabIndex = 6
+        '
         'DevOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(369, 539)
+        Me.Controls.Add(Me.PBUpdate)
+        Me.Controls.Add(Me.BTNUpdate)
         Me.Controls.Add(Me.tbrefresh)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.BTNReset)
@@ -626,4 +646,6 @@ Partial Class DevOptions
     Friend WithEvents BTNReset As Button
     Friend WithEvents Label21 As Label
     Friend WithEvents tbrefresh As TextBox
+    Friend WithEvents BTNUpdate As Button
+    Friend WithEvents PBUpdate As ProgressBar
 End Class

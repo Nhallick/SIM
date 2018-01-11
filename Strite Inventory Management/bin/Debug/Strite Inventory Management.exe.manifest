@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Strite Inventory Management.exe" size="1232360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Strite Inventory Management.exe" size="1238504">
       <assemblyIdentity name="Strite Inventory Management" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>y06a1A7pj2CAhe6K/Q82xBMOx2HP0pGXe5W+cz1a4WY=</dsig:DigestValue>
+        <dsig:DigestValue>VT828yZEZVdKsnpCzCjHx9qd5PacI6856430K25TpVs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

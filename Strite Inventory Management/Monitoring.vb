@@ -186,7 +186,7 @@ Public Class Monitoring
         PBRefresh.Value = PBRefresh.Maximum
     End Sub
 
-    Private Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+    Public Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         'Dim name As String() = {"N", "I", "C", "K", "I", "S", "C", "O", "O", "L"}
 
         ' Dim i As Integer = 1
