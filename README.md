@@ -43,3 +43,11 @@ v1.2.5
 	already an order placed. This will help avoid duplicate cutter orders in the future (especially when signing
 	out tools that have quantity below the minimum bin threshold)
 ---------------------------------------------------------------------------------------------------------------------------
+v1.2.6
+
+	*Thursday, January 11th 2018 7:17 AM*
+	-First commit of the new year!
+	-Added a button on the devOptions screen that will loop through all the tools in the inventory and recalculate
+	the cost based on the quantity. used for the odd case where the inventory has a discrepency so it can be fixed
+	anytime without me having to go through each item and find which one is wrong. Also it tells you which tools
+	its changed.
