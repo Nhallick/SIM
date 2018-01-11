@@ -638,6 +638,7 @@ Public Module Functions
     End Sub
 
     Public Sub InventoryEdit(ByRef dgv As DataGridView)
+
         If ToolRoom.DGVInventory.RowCount = 0 Then
             Exit Sub
         Else
@@ -653,6 +654,54 @@ Public Module Functions
             Dim MaxBinSize As String = dgv(2, i).Value
             Dim MinBinSize As String = dgv(3, i).Value
             Dim OrderPlaced As String = dgv(4, i).Value
+            Dim tcost As Decimal
+            Dim toolsplit() As String = Split(Tool, " ")
+            Dim size As String = toolsplit(0)
+
+            Select Case size
+                Case "1/8"
+                    tcost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "3/16"
+                    tcost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "15/64"
+                    tcost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "1/4"
+                    tcost = My.Settings.onefourth + My.Settings.Tonefourth
+                Case "5/16"
+                    tcost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "3/8"
+                    tcost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "7/16"
+                    tcost = My.Settings.sevensixteenths + My.Settings.Tsevensixteenths
+                Case "1/2"
+                    tcost = My.Settings.onehalf + My.Settings.Tonehalf
+                Case "5/8"
+                    tcost = My.Settings.fiveeighths + My.Settings.Tfiveeighths
+                Case "3/4"
+                    tcost = My.Settings.threefourths + My.Settings.Tthreefourths
+                Case "11/64"
+                    tcost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "3/32"
+                    tcost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "9/64"
+                    tcost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "5/64"
+                    tcost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "11/32"
+                    tcost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "5/32"
+                    tcost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "13/64"
+                    tcost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "7/64"
+                    tcost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "7/32"
+                    tcost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "9/32"
+                    tcost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "test"
+                    tcost = 123.45
+            End Select
 
             'ask user to confirm whether or not they would like to edit the record
             Dim result As String = MsgBox("Are you sure you would like to edit this record for (" & Quantity & ") pcs. of (" & Tool & ")?", vbYesNo + vbInformation, "Edit this order?")
@@ -734,7 +783,7 @@ Public Module Functions
                 Loop Until loopflag = True
 
                 'Update the Tool Room Inventory table record for the current tool and change the values that the user specified
-                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "' WHERE [Tool] = '" & Tool & "'"
+                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "',[Cost] = [Cost] - '" & (tcost * EditQTY) & "' WHERE [Tool] = '" & Tool & "'"
                 dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
                     dbconn.Open()

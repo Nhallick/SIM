@@ -1,4 +1,10 @@
-﻿Public Class DevOptions
+﻿Imports System.Data.OleDb
+Public Class DevOptions
+    Dim dbconn As New OleDbConnection
+    Dim Dset As New DataSet
+    Dim Dtable As New DataTable
+    Dim Dtable2 As DataTable
+    Dim Dadapter As New OleDbDataAdapter
     Private Sub BTNCostHelp_Click(sender As Object, e As EventArgs) Handles BTNCostHelp.Click, BTNCostTHelp.Click
         'help information for the material/coating based cost section
         MsgBox("This section is used to modify the pricing for each family of tools, grouped by size. Pricing is based off of (average cost for blanks) + (average cost for coating) for each size.", vbInformation, "Help")
@@ -149,5 +155,145 @@
         TBTfiveeighths.Text = My.Settings.Tfiveeighths
         TBTthreefourths.Text = My.Settings.Tthreefourths
         '***************************************************************************************
+    End Sub
+
+    Private Sub BTNUpdate_Click(sender As Object, e As EventArgs) Handles BTNUpdate.Click
+        Dim i As Integer = 0
+        Dim tools As String = ""
+        Dim toolschanged As Integer = 0
+        Dim invcount As Integer = Monitoring.dgvInventory.Rows.Count
+        PBUpdate.Maximum = invcount
+        PBUpdate.Minimum = 0
+        Do Until i = invcount
+            Dim Qty As String = Monitoring.dgvInventory(0, i).Value
+            Dim ToolName As String = Monitoring.dgvInventory(1, i).Value
+            Dim TCost As Decimal
+
+            'extract the size from the toolname identifier (always the first term)
+            Dim toolsplit() As String = Split(ToolName, " ")
+            Dim size As String = toolsplit(0)
+
+            Select Case size
+                Case "1/8"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "3/16"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "15/64"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "1/4"
+                    TCost = My.Settings.onefourth + My.Settings.Tonefourth
+                Case "5/16"
+                    TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "3/8"
+                    TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "7/16"
+                    TCost = My.Settings.sevensixteenths + My.Settings.Tsevensixteenths
+                Case "1/2"
+                    TCost = My.Settings.onehalf + My.Settings.Tonehalf
+                Case "5/8"
+                    TCost = My.Settings.fiveeighths + My.Settings.Tfiveeighths
+                Case "3/4"
+                    TCost = My.Settings.threefourths + My.Settings.Tthreefourths
+                Case "11/64"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "3/32"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "9/64"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "5/64"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "11/32"
+                    TCost = My.Settings.threeeighths + My.Settings.Tthreeeighths
+                Case "5/32"
+                    TCost = My.Settings.threesixteenths + My.Settings.Tthreesixteenths
+                Case "13/64"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "7/64"
+                    TCost = My.Settings.oneeighth + My.Settings.Toneeighth
+                Case "7/32"
+                    TCost = My.Settings.fifteensixtyfourths + My.Settings.Tfifteensixtyfourths
+                Case "9/32"
+                    TCost = My.Settings.fivesixteenths + My.Settings.Tfivesixteenths
+                Case "test"
+                    TCost = 123.45
+                Case Else
+                    TCost = 0.00
+            End Select
+
+            Dim toolcost As Decimal = Math.Round((Qty * TCost), 2)
+
+            dbconn.Close()
+            Dim selstr As String = "SELECT [Cost],[Tool] FROM [ToolRoomInventory] WHERE [Tool] = '" & ToolName & "'"
+            dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+
+            Try
+                dbconn.Open()
+            Catch ex As Exception
+                MsgBox(Convert.ToString(ex), vbCritical, "Error")
+            End Try
+            Try
+                Dset.Tables.Add(Dtable)
+            Catch ex As Exception
+                '  MsgBox(Convert.ToString(ex), vbCritical,"Error")
+            End Try
+            Dadapter = New OleDbDataAdapter(selstr, dbconn)
+            Dim cb = New OleDbCommandBuilder(Dadapter) With {
+                .QuotePrefix = "[",
+                .QuoteSuffix = "]"
+            }
+
+            Try
+                Dadapter.Fill(Dtable)
+            Catch ex As Exception
+                MsgBox(Convert.ToString(ex), vbCritical, "Error")
+            End Try
+
+            If ((Dtable(0).Item(0)) = (toolcost)) = True Then
+
+            Else
+                dbconn.Close()
+                'update approval to either "Accepted" or "Rejected" depending on the button press
+                Dim Str As String = "UPDATE [ToolRoomInventory] set [Cost] = '" & (toolcost) & "' WHERE ([Tool] = '" & ToolName & "')"
+                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+
+                Try
+                    dbconn.Open()
+                Catch ex As Exception
+                    MsgBox(Convert.ToString(ex), vbCritical, "Error")
+                End Try
+                Try
+                    Dset.Tables.Add(Dtable)
+                Catch ex As Exception
+                    'MsgBox(Convert.ToString(ex),vbcritical,"Error")
+                End Try
+                Dadapter = New OleDbDataAdapter(Str, dbconn)
+                cb = New OleDbCommandBuilder(Dadapter) With {
+                    .QuotePrefix = "[",
+                    .QuoteSuffix = "]"
+                }
+                Dadapter.Fill(Dtable)
+                'MsgBox(Str,vbinformation,"SQL")
+                dbconn.Close()
+
+                toolschanged += 1
+                tools = tools + ToolName + ", "
+
+            End If
+            Dtable.Clear()
+            dbconn.Close()
+            i = i + 1
+            PBUpdate.Value = i
+        Loop
+        If toolschanged = 0 Then
+            MsgBox("No tools needed to be changed!", vbInformation, "No Changes")
+        Else
+            MsgBox("A total of " & toolschanged & " tool costs were changed. Following is a list of the tools that have been changed.", vbInformation, "Tools Changed")
+            tools = tools.Substring(0, tools.Length - 2)
+            MsgBox(tools, vbInformation, "Tools Changed List")
+        End If
+
+
+        Monitoring.BtnRefresh_Click(sender, e)
+        PBUpdate.Value = 0
     End Sub
 End Class
