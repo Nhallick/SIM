@@ -49,6 +49,18 @@ Public Class Monitoring
         dgvInventory.Sort(dgvInventory.Columns(5), System.ComponentModel.ListSortDirection.Descending)
         dgvSignedOut.Sort(dgvSignedOut.Columns(4), System.ComponentModel.ListSortDirection.Descending)
 
+        Dim i As Integer
+
+        'run through each item in the inventory datagridview and if the "Order placed" column reads "Y" change the colour to yellow. If it reads "N" change the colour to white.
+        i = 0
+        For Each item In dgvInventory.Rows
+            If dgvInventory(4, i).Value = "Y" Then
+                dgvInventory(4, i).Style.BackColor = Color.Yellow
+            ElseIf dgvInventory(4, i).Value = "N" Then
+                dgvInventory(4, i).Style.BackColor = Color.White
+            End If
+            i = i + 1
+        Next
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
@@ -184,6 +196,19 @@ Public Class Monitoring
         '***********************************************************************************************************************************************************************************************************************************
         'set the value of the progressbar to its maximum
         PBRefresh.Value = PBRefresh.Maximum
+
+        Dim i As Integer
+
+        'run through each item in the inventory datagridview and if the "Order placed" column reads "Y" change the colour to yellow. If it reads "N" change the colour to white.
+        i = 0
+        For Each item In dgvInventory.Rows
+            If dgvInventory(4, i).Value = "Y" Then
+                dgvInventory(4, i).Style.BackColor = Color.Yellow
+            ElseIf dgvInventory(4, i).Value = "N" Then
+                dgvInventory(4, i).Style.BackColor = Color.White
+            End If
+            i = i + 1
+        Next
     End Sub
 
     Public Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
@@ -230,6 +255,20 @@ Public Class Monitoring
         If dgvInventory.Rows.Count <> 0 Then
             dgvInventory.CurrentCell = dgvInventory.Rows(usercellinventory.Y).Cells(usercellinventory.X)
         End If
+
+        Dim i As Integer
+
+        'run through each item in the inventory datagridview and if the "Order placed" column reads "Y" change the colour to yellow. If it reads "N" change the colour to white.
+        i = 0
+        For Each item In dgvInventory.Rows
+            If dgvInventory(4, i).Value = "Y" Then
+                dgvInventory(4, i).Style.BackColor = Color.Yellow
+            ElseIf dgvInventory(4, i).Value = "N" Then
+                dgvInventory(4, i).Style.BackColor = Color.White
+            End If
+            i = i + 1
+        Next
+
     End Sub
 
     Private Sub TBSearch_GotFocus(sender As Object, e As EventArgs) Handles TBSearch.GotFocus
