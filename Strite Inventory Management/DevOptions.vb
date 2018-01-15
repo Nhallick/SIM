@@ -161,6 +161,7 @@ Public Class DevOptions
         Dim i As Integer = 0
         Dim tools As String = ""
         Dim toolschanged As Integer = 0
+        Dim totaltools As Integer = 0
         Dim invcount As Integer = Monitoring.dgvInventory.Rows.Count
         PBUpdate.Maximum = invcount
         PBUpdate.Minimum = 0
@@ -221,7 +222,7 @@ Public Class DevOptions
             End Select
 
             Dim toolcost As Decimal = Math.Round((Qty * TCost), 2)
-
+            totaltools += Qty
             dbconn.Close()
             Dim selstr As String = "SELECT [Cost],[Tool] FROM [ToolRoomInventory] WHERE [Tool] = '" & ToolName & "'"
             dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
@@ -286,6 +287,7 @@ Public Class DevOptions
         Loop
         If toolschanged = 0 Then
             MsgBox("No tools needed to be changed!", vbInformation, "No Changes")
+            MsgBox("There are " & totaltools & " total tools in the inventory right now", vbInformation, "Inventory Count")
         Else
             MsgBox("A total of " & toolschanged & " tool costs were changed. Following is a list of the tools that have been changed.", vbInformation, "Tools Changed")
             tools = tools.Substring(0, tools.Length - 2)

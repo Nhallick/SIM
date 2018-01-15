@@ -783,7 +783,7 @@ Public Module Functions
                 Loop Until loopflag = True
 
                 'Update the Tool Room Inventory table record for the current tool and change the values that the user specified
-                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "',[Cost] = [Cost] - '" & (tcost * EditQTY) & "' WHERE [Tool] = '" & Tool & "'"
+                Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "',[Cost] = '" & (tcost * EditQTY) & "' WHERE [Tool] = '" & Tool & "'"
                 dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
                     dbconn.Open()
