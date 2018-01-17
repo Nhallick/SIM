@@ -45,6 +45,7 @@ Public Class ToolRoom
             CutterOrdersTableAdapter.FillSubmittedCutters(Tool_Cutter_DatabaseDataSet.CutterOrders)
         End If
 
+        'only allow the tool room attendants account to automatically order tools so that multiple computers wont order any causing multiple orders/orders 2 or 3 times the size they should be
         If Environment.UserName = "cringler" Then
             'count the number of tools that have quantities lower than their minimum bin size with GetLowTools()
             If ToolRoomInventoryTableAdapter.GetLowTools().Count > 0 Then
@@ -201,6 +202,7 @@ Public Class ToolRoom
     End Sub
 
     Private Sub BTNSignOut_Click(sender As Object, e As EventArgs) Handles BTNSignOut.Click
+        'Only the tool room attendant is allowed to sign out tools since this can cause conflicts within the system if multiple people sign out tools from different PC's
         If Environment.UserName = "cringler" Then
             Dim usercellinventory As Point
             usercellinventory = DGVInventory.CurrentCellAddress

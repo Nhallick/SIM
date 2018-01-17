@@ -415,6 +415,8 @@ Public Module Functions
             countresult = cb2.ExecuteScalar
             dbconn.Close()
 
+            'checks to see if there are any tools that match the toolname and are awaiting submittal
+            'if there aren't then run the insert SQL command to insert the new tool into the database
             If countresult = 0 Then
                 dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
                 Try
@@ -439,6 +441,8 @@ Public Module Functions
                     MsgBox(Convert.ToString(ex), vbCritical, "Error")
                 End Try
                 dbconn.Close()
+
+                'if the tool exists already in the database and is awaiting submittal then update the quantity to add the desired amount
             Else
                 Dim updatestr As String = "UPDATE [CutterOrders] set [QtyToMake] = [QtyToMake] + '" & QtyToMake & "' WHERE ([Tool Name] = '" & ToolName & "')"
                 Try
@@ -471,6 +475,8 @@ Public Module Functions
 
     Public Sub SignOutTool(ByRef dgv As DataGridView)
         Dim loopflag As Boolean = False
+        'if the inventory in the toolroom interface is empty (unlikely) then exit the sub
+        'if it isn't empty then run the code to sign out a tool
         If ToolRoom.DGVInventory.RowCount = 0 Then
             Exit Sub
         Else
@@ -555,17 +561,17 @@ Public Module Functions
 
                 'get shoporder from user
                 Do
-                    ShopOrder = InputBox("Please enter shop order that this/these tool will be used for", "Shop Order")
+                    ShopOrder = InputBox("Please enter shop order that this/these tool(s) will be used for", "Shop Order")
                 Loop Until ShopOrder <> ""
 
                 'get department from user
                 Do
-                    Department = InputBox("Please enter department that is requesting this/these tools", "Department")
+                    Department = InputBox("Please enter department that is requesting this/these tool(s)", "Department")
                 Loop Until Department <> ""
 
                 'Get name of person requesting the tool
                 Do
-                    personname = InputBox("Please enter the name of the person requesting the tool", "Name")
+                    personname = InputBox("Please enter the name of the person requesting the tool(s)", "Name")
                 Loop Until personname <> ""
 
                 'following code used to insert the sign out record to the database
@@ -594,6 +600,8 @@ Public Module Functions
                 cb = New OleDbCommandBuilder(Dadapter)
                 Dadapter.Fill(Dtable)
                 dbconn.Close()
+
+                'Checks to see if the currently selected tool is already on order
                 If dgv.SelectedRows(0).Cells(4).Value.ToString() = "Y" Then
 
                     Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & ToolName & "') AND (Approval = ""Awaiting Submittal"")"
@@ -623,7 +631,7 @@ Public Module Functions
                     Catch ex As Exception
                         'MsgBox(Convert.ToString(ex), vbCritical,"Error")
                     End Try
-                    Dadapter = New OleDbDataAdapter(Str3, dbconn)
+                    Dadapter = New OleDbDataAdapter(str3, dbconn)
                     cb = New OleDbCommandBuilder(Dadapter) With {
                         .QuotePrefix = "[",
                         .QuoteSuffix = "]"
