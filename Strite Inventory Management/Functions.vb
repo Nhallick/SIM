@@ -83,7 +83,6 @@ Public Module Functions
         Dadapter.Fill(Dtable)
         dbconn.Close()
     End Sub
-
     Public Sub UserValidation()
 
         'this sub validates the current user to the database. if the user is not on the database then the program will close immediately. If they are on the database or "Registered" then they are allowed to use the program.

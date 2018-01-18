@@ -20,7 +20,7 @@
 'TODO: When cutter order is rejected it does not re-order automatically
 
 'TODO: Full Functionality of edit button in toolroom interface *COMPLETED: 21/06/2017*
-'TODO: FUll functionality of search button in toolroom interface *COMPLETED: 21/06/2017*
+'TODO: Full functionality of search button in toolroom interface *COMPLETED: 21/06/2017*
 
 '***********************************************************************************************************************************************************************
 'UPDATES
