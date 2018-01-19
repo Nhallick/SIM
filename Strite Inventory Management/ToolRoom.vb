@@ -62,7 +62,7 @@ Public Class ToolRoom
                     Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & toolname & "') AND (Approval = ""Awaiting Submittal"")"
                     Dim countresult As Integer
                     Dim cb2 As New OleDbCommand(count, dbconn)
-                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    dbconn.ConnectionString = My.Settings.DatabasePath
                     dbconn.Open()
                     'use execute scalar command when using a COUNT command
                     countresult = cb2.ExecuteScalar
@@ -71,7 +71,7 @@ Public Class ToolRoom
                     If countresult = 0 Then
                         'insert new order into the [cutterorders] table
                         Dim str As String = "INSERT INTO [CutterOrders] ([QtyToMake], [Tool Name], [Date Submitted], [Approval]) VALUES (" & QtyToMake & ", '" & toolname & "', '" & DateSubmitted & "', '" & Approval & "')"
-                        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                        dbconn.ConnectionString = My.Settings.DatabasePath
                         Try
                             dbconn.Open()
                         Catch ex As Exception
