@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>cmJ7gtFAs6jWX9kRT7JUCNoPlMOYHPixU9K0mQtFg8U=</dsig:DigestValue>
+        <dsig:DigestValue>HPoU8Z00rC/bNO/jBkIkp/kwoHCJRw/lc71Pi41qh3c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -63,13 +63,13 @@
       <dsig:DigestValue>DYAirszLvuTDPMaHPg69Zmdve7aRluKpCwwu2Xj7HcQ=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Strite Inventory Management.exe.config" size="4044">
+  <file name="Strite Inventory Management.exe.config" size="4297">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>k8frN7pgu/6pyl7BC0Zp+IJVpVQ5R2Vwsv/GZ9AxnuQ=</dsig:DigestValue>
+      <dsig:DigestValue>qH+DHiSE6KogK9Dx/htx5NwScnsLJZ5bQ6aN9VQWNxw=</dsig:DigestValue>
     </hash>
   </file>
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">

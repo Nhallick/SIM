@@ -225,7 +225,7 @@ Public Class DevOptions
             totaltools += Qty
             dbconn.Close()
             Dim selstr As String = "SELECT [Cost],[Tool] FROM [ToolRoomInventory] WHERE [Tool] = '" & ToolName & "'"
-            dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+            dbconn.ConnectionString = My.Settings.DatabasePath
 
             Try
                 dbconn.Open()
@@ -255,7 +255,7 @@ Public Class DevOptions
                 dbconn.Close()
                 'update approval to either "Accepted" or "Rejected" depending on the button press
                 Dim Str As String = "UPDATE [ToolRoomInventory] set [Cost] = '" & (toolcost) & "' WHERE ([Tool] = '" & ToolName & "')"
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
 
                 Try
                     dbconn.Open()

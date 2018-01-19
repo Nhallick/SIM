@@ -20,7 +20,7 @@ Public Module Functions
 
         'Select SQL query that selects ALL records from a table
         Dim str As String = "SELECT * FROM " & "[" & table & "]" & ""
-        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = My.Settings.DatabasePath
 
         'use try catch statement to open the connection
         Try
@@ -64,7 +64,7 @@ Public Module Functions
         'this sub updates the users status and interface according to variables given through code when calling the sub
         dbconn.Close()
         Dim str As String = "UPDATE [Users] set [Status] = '" & status & "', [Interface] = '" & userinterface & "' WHERE [Username] = '" & Environment.UserName & "'"
-        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = My.Settings.DatabasePath
         Try
             dbconn.Open()
         Catch ex As Exception
@@ -91,7 +91,7 @@ Public Module Functions
 
         'SQL statement used to compare the computers domain name (Environment.Username) with the username field in the database
         Dim str As String = $"SELECT * FROM [Users] WHERE [Username]= '{Environment.UserName}'"
-        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = My.Settings.DatabasePath
         Try
             dbconn.Open()
         Catch ex As Exception
@@ -145,7 +145,7 @@ Public Module Functions
                 'Update the approval field in the database to "submitted for Approval" indicating to the program to move the order to the tool room interface
                 Dim Str As String = "UPDATE [CutterOrders] set [Approval] = ""Submitted for Approval"", [Date Made] = '" & datemade & "' WHERE ([QtyToMake] = " & QtyToMake & ") AND ([Tool Name] = '" & ToolName & "') AND ([Date Submitted] = '" & DateSubmitted & "') AND ([Approval] = ""Awaiting Submittal"")"
 
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
                 Try
                     dbconn.Open()
                 Catch ex As Exception
@@ -263,7 +263,7 @@ Public Module Functions
 
                 'used to count the number of tools in inventory with a certain name. Used primarily to check if a tool exists in the inventory already or not
                 Dim count As String = "SELECT Count(*) AS Expr1, Tool FROM [ToolRoomInventory] GROUP BY Tool HAVING (Tool = '" & ToolName & "')"
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
 
                 'changes approval condition to accepted or rejected-----------------------------------------------------------------------------------------------------
                 Try
@@ -417,7 +417,7 @@ Public Module Functions
             'checks to see if there are any tools that match the toolname and are awaiting submittal
             'if there aren't then run the insert SQL command to insert the new tool into the database
             If countresult = 0 Then
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
                 Try
                     dbconn.Open()
                 Catch ex As Exception
@@ -575,7 +575,7 @@ Public Module Functions
 
                 'following code used to insert the sign out record to the database
                 Dim Str As String = "INSERT INTO [SignedOutCutters] ([Quantity], [Tool], [ShopOrder], [Department], [Date], [Cost]) VALUES (" & QtyToSignOut & ", '" & Tool & "', '" & ShopOrder & "', '" & Department & "' + "" ("" + '" & personname & "' + "")"", '" & DateSignedOut & "', '" & (TCost * QtyToSignOut) & "' )"
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
                 Try
                     dbconn.Open()
                 Catch ex As Exception
@@ -606,7 +606,7 @@ Public Module Functions
                     Dim count As String = "SELECT Count (*) AS Expr1, [Tool Name], Approval FROM CutterOrders GROUP BY [Tool Name], Approval HAVING ([Tool Name] = '" & ToolName & "') AND (Approval = ""Awaiting Submittal"")"
                     Dim countresult As Integer
                     Dim cb2 As New OleDbCommand(count, dbconn)
-                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    dbconn.ConnectionString = My.Settings.DatabasePath
                     dbconn.Open()
                     'use execute scalar command when using a COUNT command
                     countresult = cb2.ExecuteScalar
@@ -619,7 +619,7 @@ Public Module Functions
                         str3 = "UPDATE [CutterOrders] set [QtyToMake] ='" & QtyToSignOut & "' + [QtyToMake] ,[Date Submitted] = '" & DateSubmitted & "' WHERE ([Tool Name] = '" & ToolName & "') AND ([Approval] = ""Awaiting Submittal"")"
                     End If
 
-                    dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                    dbconn.ConnectionString = My.Settings.DatabasePath
                     Try
                         dbconn.Open()
                     Catch ex As Exception
@@ -791,7 +791,7 @@ Public Module Functions
 
                 'Update the Tool Room Inventory table record for the current tool and change the values that the user specified
                 Dim Str As String = "UPDATE [ToolRoomInventory] set [Quantity] = " & EditQTY & ", [Max Bin Size] = " & EditMaxBinSize & ", [Min Bin Size] = " & EditMinBinSize & ", [Date Updated] = '" & Date.Now & "',[Cost] = '" & (tcost * EditQTY) & "' WHERE [Tool] = '" & Tool & "'"
-                dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+                dbconn.ConnectionString = My.Settings.DatabasePath
                 Try
                     dbconn.Open()
                 Catch ex As Exception
@@ -856,7 +856,7 @@ Public Module Functions
         'declare an item to hold a value from the datatable for later use
         Dim dbitem As String
         Dim str As String = "SELECT * FROM [ToolRoomInventory]"
-        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = My.Settings.DatabasePath
 
         Try
             dbconn.Open()
@@ -901,7 +901,7 @@ Public Module Functions
 
         'SQL statement used to compare the computers domain name (Environment.Username) with the username field in the database
         Dim str As String = "SELECT * FROM [Users] WHERE [Username]= '" & Environment.UserName & "' AND [Admin]= ""Y"""
-        dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+        dbconn.ConnectionString = My.Settings.DatabasePath
         Try
             dbconn.Open()
         Catch ex As Exception
@@ -969,7 +969,7 @@ Public Module Functions
 
             'Following code used to insert new tool order in the database
             Dim str As String = "INSERT INTO [ToolRoomInventory] ([Quantity], [Tool], [Max Bin Size], [Min Bin Size], [Order Placed], [Date Updated]) VALUES (" & Qty & ", '" & ToolName & "', '" & MaxBin & "', '" & MinBin & "', ""N"", '" & DateUpdated & "')"
-            dbconn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutter Database.accdb;Persist Security Info = False"
+            dbconn.ConnectionString = My.Settings.DatabasePath
             Try
                 dbconn.Open()
             Catch ex As Exception
