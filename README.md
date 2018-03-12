@@ -51,3 +51,9 @@ v1.2.6
 	the cost based on the quantity. used for the odd case where the inventory has a discrepency so it can be fixed
 	anytime without me having to go through each item and find which one is wrong. Also it tells you which tools
 	its changed.
+---------------------------------------------------------------------------------------------------------------------------
+v1.2.7
+
+	*Monday, March 12th 2018 8:40 AM*
+	-Changes to the UI in various places
+	-Added a filtering function on the monitoring screen. still needs some tweaking and a few things need to be fixed/added but it 		is basically functional at this point. Stay tuned for updates on this.
