@@ -26,11 +26,11 @@ Partial Class Monitoring
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Monitoring))
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Monitoring))
         Me.gbInventory = New System.Windows.Forms.GroupBox()
         Me.dgvInventory = New System.Windows.Forms.DataGridView()
         Me.QuantityDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -43,6 +43,7 @@ Partial Class Monitoring
         Me.ToolRoomInventoryBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Tool_Cutter_DatabaseDataSet1 = New Strite_Inventory_Management.Tool_Cutter_DatabaseDataSet()
         Me.GBSignedOut = New System.Windows.Forms.GroupBox()
+        Me.PBFilter = New System.Windows.Forms.PictureBox()
         Me.dgvSignedOut = New System.Windows.Forms.DataGridView()
         Me.QuantityDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -84,6 +85,7 @@ Partial Class Monitoring
         CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GBSignedOut.SuspendLayout()
+        CType(Me.PBFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvSignedOut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,6 +202,7 @@ Partial Class Monitoring
         '
         'GBSignedOut
         '
+        Me.GBSignedOut.Controls.Add(Me.PBFilter)
         Me.GBSignedOut.Controls.Add(Me.dgvSignedOut)
         Me.GBSignedOut.Location = New System.Drawing.Point(12, 420)
         Me.GBSignedOut.Name = "GBSignedOut"
@@ -207,6 +210,17 @@ Partial Class Monitoring
         Me.GBSignedOut.TabIndex = 1
         Me.GBSignedOut.TabStop = False
         Me.GBSignedOut.Text = "Signed Out Cutters"
+        '
+        'PBFilter
+        '
+        Me.PBFilter.BackColor = System.Drawing.Color.Transparent
+        Me.PBFilter.Image = CType(resources.GetObject("PBFilter.Image"), System.Drawing.Image)
+        Me.PBFilter.Location = New System.Drawing.Point(888, 3)
+        Me.PBFilter.Name = "PBFilter"
+        Me.PBFilter.Size = New System.Drawing.Size(21, 17)
+        Me.PBFilter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PBFilter.TabIndex = 1
+        Me.PBFilter.TabStop = False
         '
         'dgvSignedOut
         '
@@ -537,6 +551,7 @@ Partial Class Monitoring
         CType(Me.ToolRoomInventoryBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tool_Cutter_DatabaseDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GBSignedOut.ResumeLayout(False)
+        CType(Me.PBFilter, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvSignedOut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SignedOutCuttersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Tool_Cutter_DatabaseDataSet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -599,4 +614,5 @@ Partial Class Monitoring
     Friend WithEvents lblbInventoryValue As Label
     Friend WithEvents lblSignedOutValue As Label
     Friend WithEvents PBRefresh As ProgressBar
+    Friend WithEvents PBFilter As PictureBox
 End Class

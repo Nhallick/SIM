@@ -61,14 +61,21 @@ Public Class Monitoring
             End If
             i = i + 1
         Next
+
     End Sub
 
     Private Sub TmrRefresh_Tick(sender As Object, e As EventArgs) Handles tmrRefresh.Tick
+        Dim i As Integer
+
+
         'set the refresh progressbar to its minimum value (0)
         PBRefresh.Value = PBRefresh.Minimum
         'DGVUpdate(dgvInventory)
         'refresh user datagridview each timer cycle
         DGVRefresh("Users", dgvUsers)
+
+        'Use a for loop to go through each item in the datagridview. If a user is online change the status cell green, if they are offline change the cell to red.
+
 
         'these variables are used to save the current position of the selected cell in each datagridview. after the refresh is complete the positions of these cells will be restored as to not disrupt the user
         usercellsignedout = dgvSignedOut.CurrentCellAddress
@@ -197,7 +204,6 @@ Public Class Monitoring
         'set the value of the progressbar to its maximum
         PBRefresh.Value = PBRefresh.Maximum
 
-        Dim i As Integer
 
         'run through each item in the inventory datagridview and if the "Order placed" column reads "Y" change the colour to yellow. If it reads "N" change the colour to white.
         i = 0
@@ -209,9 +215,13 @@ Public Class Monitoring
             End If
             i = i + 1
         Next
+
+
     End Sub
 
     Public Sub BtnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        Dim i As Integer
+
         'Dim name As String() = {"N", "I", "C", "K", "I", "S", "C", "O", "O", "L"}
 
         ' Dim i As Integer = 1
@@ -256,7 +266,7 @@ Public Class Monitoring
             dgvInventory.CurrentCell = dgvInventory.Rows(usercellinventory.Y).Cells(usercellinventory.X)
         End If
 
-        Dim i As Integer
+
 
         'run through each item in the inventory datagridview and if the "Order placed" column reads "Y" change the colour to yellow. If it reads "N" change the colour to white.
         i = 0
@@ -268,6 +278,7 @@ Public Class Monitoring
             End If
             i = i + 1
         Next
+
 
     End Sub
 
@@ -445,5 +456,9 @@ Public Class Monitoring
         'warn the user that the options on the next form are critical and not to be tampered with unless they know what they are. this form is only accessible by the developer and admins
         MsgBox("Do not modify the following settings unless you absolutely know what you are doing!", vbExclamation, "Warning!")
         DevOptions.Show()
+    End Sub
+
+    Private Sub PBFilter_Click(sender As Object, e As EventArgs) Handles PBFilter.Click
+        Filtering.Show()
     End Sub
 End Class

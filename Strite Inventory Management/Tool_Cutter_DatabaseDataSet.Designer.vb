@@ -2786,7 +2786,6 @@ Namespace Tool_Cutter_DatabaseDataSetTableAdapters
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.OleDb.OleDbConnection()
             Me._connection.ConnectionString = Global.Strite_Inventory_Management.My.MySettings.Default.Tool_Cutter_DatabaseConnectionString
-
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

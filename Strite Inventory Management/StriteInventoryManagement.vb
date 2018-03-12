@@ -54,7 +54,7 @@ Public Class StriteInventoryManagement
     End Sub
 
     Private Sub StriteInventoryMgmt_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.RealTime
         'TODO: This line of code loads data into the 'Tool_Cutter_DatabaseDataSet.Users' table. You can move, or remove it, as needed.
         UsersTableAdapter.Fill(Tool_Cutter_DatabaseDataSet.Users)
 

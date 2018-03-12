@@ -57,8 +57,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=""P:\Tool & Cutter Grinding\Tool Cut"& _ 
-            "ter Database.accdb""")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=P:\Tool & Cutter Grinding\Tool Cutt"& _ 
+            "er Database.accdb;Persist Security Info = False")>  _
         Public ReadOnly Property Tool_Cutter_DatabaseConnectionString() As String
             Get
                 Return CType(Me("Tool_Cutter_DatabaseConnectionString"),String)
