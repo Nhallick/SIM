@@ -56,4 +56,5 @@ v1.2.7
 
 	*Monday, March 12th 2018 8:40 AM*
 	-Changes to the UI in various places
-	-Added a filtering function on the monitoring screen. still needs some tweaking and a few things need to be fixed/added but it 		is basically functional at this point. Stay tuned for updates on this.
+	-Added a filtering function on the monitoring screen. still needs some tweaking and a few things need to be 
+	fixed/added but it is basically functional at this point. Stay tuned for updates on this.
